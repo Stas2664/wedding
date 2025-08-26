@@ -361,3 +361,24 @@ function initializeAnimations() {
         }, 1000);
     });
 }
+
+
+
+// Smooth cross-page transitions for internal links
+(function(){
+  const sameOrigin = (url) => {
+    try { const u = new URL(url, window.location.href); return u.origin === window.location.origin; } catch { return false; }
+  };
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('#')) return;
+    if (!sameOrigin(href)) return;
+    if (a.target === '_blank') return;
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.body.classList.add('page-leave');
+      setTimeout(() => { window.location.href = href; }, 250);
+    });
+  });
+})();

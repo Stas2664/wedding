@@ -2159,3 +2159,88 @@ a, button, .btn, .card, .nav-link, .service-item, img{
   body{ opacity:0; animation: pageFadeIn .4s ease forwards; }
   @keyframes pageFadeIn { to { opacity: 1; } }
 }
+
+
+/* ===== Global Alignment & Layout Fixes ===== */
+
+/* Ensure all section headers are centered */
+.section-header, .section-title {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fix container centering */
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+}
+
+/* Service items alignment */
+.services-list, .portfolio-items, .reviews-grid, .faq-list {
+    display: grid;
+    justify-items: center;
+}
+
+/* Service item text alignment */
+.service-item, .portfolio-item, .review-item, .faq-item {
+    text-align: center;
+    justify-content: center;
+}
+
+/* Contact form centering */
+.contact-form {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+}
+
+/* Buttons and links center alignment */
+.btn, .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Uniform image scaling */
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    max-width: 100%;
+}
+
+/* Ensure FAQ answers align nicely */
+.faq-answer {
+    text-align: left;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+
+/* ===== Global alignment & responsive fixes ===== */
+img { max-width: 100%; height: auto; display: block; }
+
+/* Equal-height cards in grids */
+.services-grid, .reviews-grid, .values-grid, .contact-grid, .portfolio-grid {
+  align-items: stretch;
+}
+.service-item, .review-item, .faq-item, .feature-item {
+  height: 100%;
+}
+
+/* Normalize headers and section spacing */
+.section-header, .section-title { text-align: center; }
+.section-header p { margin-left: auto; margin-right: auto; }
+
+/* Improve small-screen grids */
+@media (max-width: 768px){
+  .services-grid, .reviews-grid, .values-grid, .contact-grid { 
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Smooth page leave animation */
+.page-leave { opacity: 0 !important; transition: opacity .25s ease; }

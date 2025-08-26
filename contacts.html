@@ -9,6 +9,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style id="final-visibility-overrides">
+  :root{
+    --text-dark:#1a1a1a;
+    --text-light:#F8F5F0;
+  }
+  /* Make sure animations never leave text invisible on iOS */
+  @supports (-webkit-touch-callout: none){
+    .fade-in-up,.fade-in-left,.fade-in-right,.scale-in{opacity:1!important;transform:none!important;}
+  }
+  /* Dark sections — light text */
+  .hero,.stats-section,.values-section,.cta-section,.footer{color:var(--text-light)!important;}
+  .hero *,.stats-section *,.values-section *,.cta-section *,.footer *{color:inherit!important;}
+  /* Light sections & cards — dark text */
+  .page-header,.team-section,.services-section,.contact-info,.contact-form-section,
+  .portfolio-stats,.faq-section,.service-card,.review-card,.review-item,.overall-rating,
+  .map-section,.additional-services,.additional-card,.all-reviews,.portfolio-filter,
+  .view-project,.contact-card,.story-content,.about-content,.team-content{color:var(--text-dark)!important;}
+  .page-header *,.team-section *,.services-section *,.contact-info *,.contact-form-section *,
+  .portfolio-stats *,.faq-section *,.service-card *,.review-card *,.review-item *,.overall-rating *,
+  .map-section *,.additional-services *,.additional-card *,.all-reviews *,.portfolio-filter *,
+  .view-project *,.contact-card *,.story-content *,.about-content *,.team-content *{color:inherit!important;}
+  /* Stats numbers inherit */
+  .stat-number,.stat-label{color:inherit!important;text-shadow:none!important;}
+  /* Navbar brand readable */
+  .nav-logo a{color:#fff!important;}
+  /* Footer social compact icons */
+  .footer-social .social-link{width:44px;height:44px;border-radius:50%;font-size:0;}
+  .footer-social .social-link i,.footer-social .social-link svg{font-size:22px;width:22px;height:22px;}
+  /* Contact social pills */
+  .social-icons{display:flex;gap:12px;flex-wrap:wrap;}
+  .social-icons .social-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:9999px;background:var(--color-accent-gold);color:#000!important;border-color:var(--color-accent-gold);width:auto;height:auto;}
+  .social-icons .social-link i,.social-icons .social-link svg{font-size:18px;width:18px;height:18px;}
+  .social-icons .social-link span{display:inline;}
+</style>
+
 </head>
 <body>
     <!-- Navigation -->

@@ -2134,3 +2134,28 @@ section { scroll-margin-top: 80px; } /* avoid anchor overlap with fixed nav */
   .nav-menu { gap: 8px; }
   .container { padding-inline: 12px; }
 }
+
+
+/* ===== Fix: Consistent stat numbers alignment & smoother transitions ===== */
+.stat-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+.stat-number{
+    line-height:1;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+    letter-spacing: 0.02em;
+}
+/* Global smooth hover transitions */
+:root{ --transition-fast: .3s; --transition-slow: .6s; }
+a, button, .btn, .card, .nav-link, .service-item, img{
+    transition: all var(--transition-fast) ease;
+}
+/* Page fade-in */
+@media (prefers-reduced-motion: no-preference){
+  body{ opacity:0; animation: pageFadeIn .4s ease forwards; }
+  @keyframes pageFadeIn { to { opacity: 1; } }
+}

@@ -297,18 +297,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Animate numbers
     function animateNumber(element) {
-        const target = parseInt(element.textContent);
+        const text = element.textContent.trim();
+        const match = text.match(/^(\d+)(.*)$/);
+        const target = match ? parseInt(match[1], 10) : 0;
+        const suffix = match ? match[2] : '';
         const duration = 2000;
         const step = target / (duration / 16);
         let current = 0;
-        
         const timer = setInterval(() => {
             current += step;
             if (current >= target) {
                 current = target;
                 clearInterval(timer);
             }
-            element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '');
+            element.textContent = Math.floor(current) + suffix;
         }, 16);
     }
 

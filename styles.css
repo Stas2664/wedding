@@ -2616,42 +2616,34 @@ p { color: rgba(0,0,0,0.82) !important; }
 }
 .page-header .page-title, .page-header .page-subtitle { color: #1a1a1a !important; }
 
-/* === Custom Color Fixes v3 === */
+/* === V4 targeted color fixes per user === */
 
-/* Главная: Обо мне заголовок черный */
-#about h2, .about-title { color: #000000 !important; }
+/* Главная: ОБО МНЕ — черный заголовок */
+.about .section-title { color:#000 !important; text-shadow:none !important; }
 
-/* Три блока под "Обо мне" белый текст */
-.value-card h3, .value-card p { color: #ffffff !important; text-shadow: 0 1px 3px rgba(0,0,0,.6); }
+/* Главная: три фичи под "ОБО МНЕ" — белый текст в черных плашках */
+.about .feature-item, .contact-features .feature-item { background: var(--color-black) !important; }
+.about .feature-item *, .contact-features .feature-item *, .about .feature-item p { color:#fff !important; opacity:1 !important; text-shadow:0 1px 3px rgba(0,0,0,.6); }
 
-/* О нас: "Наша история" черный */
-#about-us h2, .history-title { color: #000000 !important; text-shadow: none !important; }
+/* О нас: Наша история — черный заголовок */
+.about-story .section-title { color:#000 !important; text-shadow:none !important; }
 
-/* Услуги: Как мы работаем и шаги — белые */
-.services h2, .services h3, .services p,
-.work-steps h2, .work-steps h3, .work-steps p,
-.steps h2, .steps h3, .steps p {
-  color: #ffffff !important;
-  opacity: 1 !important;
-  text-shadow: 0 2px 6px rgba(0,0,0,.6);
-}
+/* Услуги: как мы работаем — белый текст */
+.process-section .section-header h2,
+.process-section .process-step h3,
+.process-section .process-step p,
+.process-section .process-step .step-number { color:#fff !important; opacity:1 !important; text-shadow:0 2px 6px rgba(0,0,0,.6); }
 
-/* Отзывы: заголовок и форма */
-.reviews h2, .reviews h3, .reviews p,
-.reviews .section-title, .reviews .section-subtitle,
-.reviews form h2, .reviews form p {
-  color: #ffffff !important;
-  opacity: 1 !important;
-  text-shadow: 0 1px 3px rgba(0,0,0,.6);
-}
+/* Отзывы: заголовки — белые */
+.featured-reviews .section-header h2,
+.review-form-section .section-header h2,
+.review-form-section .section-header p { color:#fff !important; opacity:1 !important; text-shadow:0 1px 3px rgba(0,0,0,.6); }
 
-/* Контакты: черные плашки — белый текст */
-.contact .value-card *, .contact .faq *, .contact h2, .contact h3, .contact p {
-  color: #ffffff !important;
-  opacity: 1 !important;
-  text-shadow: 0 1px 3px rgba(0,0,0,.6);
-}
+/* Контакты: тексты в черных плашках и FAQ — белые */
+.contact-form-section .contact-features .feature-item *,
+.faq-section .section-header h2,
+.faq-section .faq-question h3,
+.faq-section .faq-answer p { color:#fff !important; opacity:1 !important; }
 
-/* FAQ section titles */
-.faq h2, .faq h3 { color: #ffffff !important; }
-.faq p, .faq li { color: #ffffff !important; }
+/* Сохраняем золотые акценты */
+.accent-gold, .step-number, .feature-dash { color: var(--color-accent-gold) !important; }

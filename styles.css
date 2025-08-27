@@ -2647,3 +2647,36 @@ p { color: rgba(0,0,0,0.82) !important; }
 
 /* Сохраняем золотые акценты */
 .accent-gold, .step-number, .feature-dash { color: var(--color-accent-gold) !important; }
+
+/* ==== V5 Mobile nav & responsive fixes ==== */
+
+/* Mobile nav: dark text on white drawer */
+@media (max-width: 992px){
+  .nav-menu { background: #ffffff; }
+  .nav-menu .nav-link { color: #1a1a1a !important; }
+  .nav-menu .nav-link.active, .nav-menu .nav-link:hover { color: var(--color-accent-gold) !important; }
+}
+
+/* Safer z-index so menu overlays content */
+.navbar { z-index: 9999 !important; }
+.nav-menu { z-index: 9998 !important; }
+
+/* General responsive polish */
+@media (max-width: 768px){
+  .hero{ height: 80vh; }
+  .section-header{ margin-bottom: 2.5rem; }
+  .about .about-content{ display:block; }
+  .about .about-image img{ width:100%; height:auto; }
+  .about .feature-item{ padding:1rem 1.25rem; }
+  .process-steps{ display:grid; grid-template-columns:1fr; gap:1rem; }
+  .reviews-grid{ grid-template-columns:1fr !important; }
+  .portfolio-items{ grid-template-columns:1fr 1fr; gap:12px; }
+  .portfolio-items img{ width:100%; height:auto; display:block; }
+  .contact-content{ display:block; }
+  .contact-form, .review-form{ width:100%; }
+}
+
+/* iOS Safari: ensure text is visible when animations are disabled */
+@supports (-webkit-touch-callout: none){
+  .fade-in-up,.fade-in-left,.fade-in-right,.scale-in{opacity:1 !important; transform:none !important;}
+}

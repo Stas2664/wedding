@@ -2615,3 +2615,35 @@ p { color: rgba(0,0,0,0.82) !important; }
   color: var(--color-warm-white) !important;
 }
 .page-header .page-title, .page-header .page-subtitle { color: #1a1a1a !important; }
+
+/* === Fix visibility issues === */
+.section {
+  position: relative;
+  overflow: hidden;
+}
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1;
+}
+.section .text-block, .section h1, .section h2, .section h3, .section p, .section span {
+  position: relative;
+  z-index: 2;
+  color: #fff !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+}
+.reveal {
+  opacity: 1 !important;
+  transition: opacity 1s ease, transform 1s ease;
+}
+.reveal.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+@media (max-width: 768px) {
+  .section h1 { font-size: 1.8rem; }
+  .section h2 { font-size: 1.5rem; }
+  .section p  { font-size: 1rem; }
+}

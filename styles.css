@@ -2616,34 +2616,67 @@ p { color: rgba(0,0,0,0.82) !important; }
 }
 .page-header .page-title, .page-header .page-subtitle { color: #1a1a1a !important; }
 
-/* === Fix visibility issues === */
-.section {
-  position: relative;
-  overflow: hidden;
-}
-.section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  z-index: 1;
-}
-.section .text-block, .section h1, .section h2, .section h3, .section p, .section span {
-  position: relative;
-  z-index: 2;
-  color: #fff !important;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
-}
-.reveal {
+/* === Strong contrast overrides for dark headers, services, steps, and cards === */
+
+/* Page header band */
+.page-header, .hero { position: relative; }
+.page-header .page-title,
+.page-header .page-subtitle,
+.page-header h1,
+.page-header h2 {
+  color: #ffffff !important;
   opacity: 1 !important;
-  transition: opacity 1s ease, transform 1s ease;
+  text-shadow: 0 2px 6px rgba(0,0,0,.6);
 }
-.reveal.hidden {
-  opacity: 0;
-  transform: translateY(20px);
+
+/* Services / dark sections headings */
+.section-title,
+.section-subtitle {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,.6);
 }
-@media (max-width: 768px) {
-  .section h1 { font-size: 1.8rem; }
-  .section h2 { font-size: 1.5rem; }
-  .section p  { font-size: 1rem; }
+
+/* Steps "Как мы работаем" */
+.steps, .process, .workflow, .how-we-work, .work-steps {
+  position: relative;
 }
+.steps h2, .process h2, .workflow h2, .how-we-work h2, .work-steps h2,
+.steps h3, .process h3, .workflow h3, .how-we-work h3, .work-steps h3,
+.steps p, .process p, .workflow p, .how-we-work p, .work-steps p {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,.6);
+}
+
+/* Cards on dark background */
+.value-card, .benefit-card, .feature-card, .why-us-card {
+  background: rgba(0,0,0,.9) !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+.value-card *, .benefit-card *, .feature-card *, .why-us-card * {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,.6);
+}
+
+/* Contact page header */
+.contact .page-title, .contact .page-subtitle {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Generic: force all titles inside black backgrounds to be white */
+[class*="header"], [class*="title"] {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Ensure anchors in dark sections visible */
+.section a, .page-header a {
+  color: #f5f5f5 !important;
+  text-decoration-color: rgba(255,255,255,.7);
+}
+
+/* Keep gold accent where explicitly used */
+.section .accent, .section .gold, .accent-gold { color: var(--color-accent-gold) !important; }

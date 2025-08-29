@@ -13,18 +13,18 @@ body {
     font-family: 'Manrope', 'Helvetica Neue', sans-serif;
     line-height: 1.6;
     color: #1a1a1a;
-    background-color: #ffffff;
+    background-color: var(--color-warm-white);
     font-weight: 400;
 }
 
 /* Luxury Color Variables */
 :root {
-    --color-black: #1f2a24; /* deep eucalyptus green replacing stark black */
+    --color-black: #111111; /* deep charcoal for luxe look */
     --color-white: #ffffff;
     --color-dark-gray: #1a1a1a;
     --color-medium-gray: #4a4a4a;
     --color-light-gray: #f5f5f5;
-    --color-accent-gold: #d4af37;
+    --color-accent-gold: #C8A951; /* unified gold accent */
     --color-accent-pink: #f4c2c2;
     --color-accent-champagne: #f7e7ce;
     --color-accent-olive: #b8c5a6;
@@ -2338,8 +2338,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ================= Premium Theme Overrides ================= */
 :root{
-  --color-black: #1f2a24; /* deep eucalyptus green replacing stark black */
-  --color-accent-gold: #BFA056; /* deeper gold */
+  --color-black: #111111; /* deep charcoal for luxe look */
+  --color-accent-gold: #C8A951; /* unified gold accent */
   --color-warm-white: #F8F5F0;
 }
 
@@ -2489,8 +2489,8 @@ h3 { font-size: 1.6rem; font-weight: 400; line-height: 1.3; }
 
 /* Color scheme */
 :root {
-    --color-black: #1f2a24; /* deep eucalyptus green replacing stark black */
-    --color-white: #F8F5F0;
+    --color-black: #111111; /* deep charcoal for luxe look */
+    --color-white: #ffffff;
     --color-gold: #BFA056;
     --color-gray-dark: #1a1a1a;
     --color-gray-medium: #4a4a4a;
@@ -2720,3 +2720,24 @@ p { color: rgba(0,0,0,0.82) !important; }
   margin-left: auto;
   margin-right: auto;
 }
+
+
+/* --- Luxe Classic palette normalization --- */
+.dark-section, .footer, .stats-section, .hero, .values-section .values-grid .value-card {
+  color: var(--color-white);
+}
+.dark-section a, .footer a { color: var(--color-white); }
+.btn-primary{ background: var(--color-accent-gold); border-color: var(--color-accent-gold); color: var(--color-white); }
+.btn-primary:hover{ filter: brightness(1.06); transform: translateY(-1px); }
+.border-gold{ border-color: var(--color-accent-gold) !important; }
+.text-gold{ color: var(--color-accent-gold) !important; }
+
+/* Section headings underline in gold */
+.section-title::after{ background: var(--color-accent-gold); }
+
+/* Cards on dark background */
+.value-card{ background: rgba(17,17,17,0.8); box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 1px solid rgba(200,169,81,0.35); }
+.value-card:hover{ box-shadow: 0 14px 40px rgba(0,0,0,0.3); transform: translateY(-2px); }
+
+/* Ensure inputs readable on light background */
+input, textarea{ background: #fff; color: #1a1a1a; }

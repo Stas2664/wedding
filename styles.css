@@ -19,7 +19,7 @@ body {
 
 /* Luxury Color Variables */
 :root {
-    --color-black: #000000;
+    --color-black: #1f2a24; /* deep eucalyptus green replacing stark black */
     --color-white: #ffffff;
     --color-dark-gray: #1a1a1a;
     --color-medium-gray: #4a4a4a;
@@ -802,7 +802,7 @@ p {
 /* Values Section - Luxury Style */
 .values-section {
     padding: 8rem 0;
-    background: var(--color-black);
+    background: url("images/values-bg.jpg") no-repeat center center/cover;
     color: var(--color-white);
     position: relative;
 }
@@ -814,7 +814,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--color-black) 0%, #1a1a1a 100%);
+    background: rgba(0,0,0,0.6);
     z-index: -1;
 }
 
@@ -2338,7 +2338,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ================= Premium Theme Overrides ================= */
 :root{
-  --color-black: #000000;
+  --color-black: #1f2a24; /* deep eucalyptus green replacing stark black */
   --color-accent-gold: #BFA056; /* deeper gold */
   --color-warm-white: #F8F5F0;
 }
@@ -2489,7 +2489,7 @@ h3 { font-size: 1.6rem; font-weight: 400; line-height: 1.3; }
 
 /* Color scheme */
 :root {
-    --color-black: #000000;
+    --color-black: #1f2a24; /* deep eucalyptus green replacing stark black */
     --color-white: #F8F5F0;
     --color-gold: #BFA056;
     --color-gray-dark: #1a1a1a;
@@ -2679,4 +2679,44 @@ p { color: rgba(0,0,0,0.82) !important; }
 /* iOS Safari: ensure text is visible when animations are disabled */
 @supports (-webkit-touch-callout: none){
   .fade-in-up,.fade-in-left,.fade-in-right,.scale-in{opacity:1 !important; transform:none !important;}
+}
+
+
+/* Team intro text (under section title) */
+.team-section .team-intro{
+  max-width: 960px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  color: var(--color-dark-gray);
+}
+.team-section .team-intro p{
+  margin: 0.5rem 0;
+  font-size: 1.05rem;
+}
+
+/* Member image caption and note */
+.member-image { position: relative; }
+.member-caption{
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-medium-gray);
+}
+.member-note{
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--color-medium-gray);
+}
+
+
+.values-section .section-subtitle {
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }

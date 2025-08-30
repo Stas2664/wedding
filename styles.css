@@ -374,7 +374,7 @@ p {
 
 .story-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 6rem;
     align-items: center;
 }
@@ -489,7 +489,7 @@ p {
 
 .about-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 6rem;
     align-items: center;
 }
@@ -586,7 +586,7 @@ p {
 
 .service-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 3rem;
     align-items: center;
     padding: 2rem;
@@ -702,7 +702,7 @@ p {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr 1fr;
     gap: 3rem;
     margin-bottom: 3rem;
 }
@@ -1066,7 +1066,7 @@ p {
 
 .service-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 4rem;
     align-items: center;
     margin-bottom: 4rem;
@@ -1500,7 +1500,7 @@ p {
 
 .contact-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 4rem;
     align-items: start;
 }
@@ -1556,7 +1556,7 @@ p {
 
 .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 1rem;
 }
 
@@ -2180,7 +2180,7 @@ a, button, .btn, .card, .nav-link, .service-item, img{
 .container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 1200px;
+    max-width: 1300px;
 }
 
 /* Service items alignment */
@@ -2855,11 +2855,11 @@ body, p, li, input, select, textarea, button {
 
 
 /* ---- Rebuilt 'Наша история' layout ---- */
-.story-section { margin: 60px auto; max-width: 1200px; padding: 0 20px; }
-.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.story-section { margin: 60px auto; max-width: 1300px; padding: 0 20px; }
+.story-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: start; }
 .story-text { font-size: 16px; line-height: 1.75; }
 .story-media { display:flex; justify-content:center; align-items:center; }
-.story-media img{ width:100%; height:auto; max-height: 700px; object-fit: contain; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.18); }
+.story-media img{ width:100%; height:auto; max-height: 820px; object-fit: contain; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.18); }
 /* Make services go full-width below */
 .story-section .services-overview{ margin-top: 50px; }
 .story-section .services-overview .services-list{ display: grid; grid-template-columns: repeat(3,minmax(200px,1fr)); gap: 20px; }

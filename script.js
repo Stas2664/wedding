@@ -463,3 +463,43 @@ function initializeAnimations() {
     if (e.key === 'ArrowRight') next();
   });
 })();
+
+
+// Ensure runs after DOM is ready
+window.addEventListener('DOMContentLoaded', function(){
+  try{
+    const links = Array.from(document.querySelectorAll('.portfolio-items a.lb-item'));
+    const modal = document.getElementById('lb-modal');
+    if (!modal || !links.length) return;
+    const img = modal.querySelector('.lb-image');
+    const prevBtn = modal.querySelector('.lb-prev');
+    const nextBtn = modal.querySelector('.lb-next');
+    const closeBtn = modal.querySelector('.lb-close');
+    let idx = 0;
+    function openAt(i){
+      idx = (i+links.length)%links.length;
+      img.src = links[idx].getAttribute('href');
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function close(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+      img.src = '';
+    }
+    function prev(){ openAt(idx-1); }
+    function next(){ openAt(idx+1); }
+    links.forEach((a,i)=>a.addEventListener('click', (e)=>{e.preventDefault(); openAt(i);} ));
+    prevBtn?.addEventListener('click', prev);
+    nextBtn?.addEventListener('click', next);
+    closeBtn?.addEventListener('click', close);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) close(); });
+    document.addEventListener('keydown', (e)=>{ if(!modal.classList.contains('open')) return;
+      if(e.key==='Escape') close();
+      if(e.key==='ArrowLeft') prev();
+      if(e.key==='ArrowRight') next();
+    });
+  }catch(err){ console.error('Lightbox init error:', err); }
+});

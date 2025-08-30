@@ -2792,3 +2792,16 @@ body, p, li, input, select, textarea, button {
 @media (max-width: 767px) {
   .hero { will-change: transform; }
 }
+
+/* Fine-tune collage image in 'Наша история' */
+.story-image img[src*="history-collage"]{
+    object-position: center;
+    border-radius: 6px;
+}
+@media (max-width: 992px){
+  .story-image img[src*="history-collage"]{height: 420px;}
+}
+@media (max-width: 640px){
+  .story-content{grid-template-columns: 1fr; gap: 2rem;}
+  .story-image img[src*="history-collage"]{height: 320px;}
+}

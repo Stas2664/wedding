@@ -2936,3 +2936,27 @@ body, p, li, input, select, textarea, button {
 /* ensure portfolio overlay doesn't block clicks */
 .portfolio-overlay{ pointer-events: none; }
 .portfolio-image a{ display:block; }
+
+
+/* === Lightbox controls: visible & inside frame === */
+.lb-prev{ left: 10px !important; }
+.lb-next{ right: 10px !important; }
+.lb-close{ top: 10px !important; right: 10px !important; }
+
+.lb-btn, .lb-close{
+  background: rgba(0,0,0,0.6);
+  color:#fff;
+  font-size:32px;
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;
+  z-index:2;
+}
+.lb-btn:hover, .lb-close:hover{ background: rgba(0,0,0,0.8); }
+.lb-image{ position:relative; z-index:1; display:block; }
+

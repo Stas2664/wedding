@@ -2868,3 +2868,8 @@ body, p, li, input, select, textarea, button {
   .story-media img{ max-height: none; }
   .story-section .services-overview .services-list{ grid-template-columns: 1fr; }
 }
+
+/* Make overlay ignore pointer events so image links are clickable */
+.portfolio-overlay{pointer-events:none;}
+/* Ensure the anchor covers the image area */
+.portfolio-image a{display:block;}

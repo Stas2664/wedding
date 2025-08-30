@@ -197,5 +197,70 @@
 <p>© 2025 wedding rave. Все права защищены.</p>
 </div>
 </div>
-</footer><script defer="True" src="script.js?v=13"></script><script defer="True" src="lightbox.js?v=13"></script></main><div aria-hidden="true" class="lightbox hidden" id="lightbox-overlay"><div aria-label="Просмотр изображения" aria-modal="true" class="lightbox__content" role="dialog"><button aria-label="Закрыть (Esc)" class="lightbox__btn lightbox__close" type="button">✕</button><button aria-label="Предыдущее (←)" class="lightbox__btn lightbox__prev" type="button">‹</button><img alt="Просмотр изображения" class="lightbox__img"/><button aria-label="Следующее (→)" class="lightbox__btn lightbox__next" type="button">›</button><div class="lightbox__counter">1/1</div></div></div></body>
+</footer><script defer="True" src="script.js?v=13"></script></main>
+<div aria-hidden="true" class="lightbox hidden" id="lightbox-overlay">
+<div aria-label="Просмотр изображения" aria-modal="true" class="lightbox__content" role="dialog">
+<button aria-label="Закрыть (Esc)" class="lightbox__btn lightbox__close" type="button">✕</button>
+<button aria-label="Предыдущее (←)" class="lightbox__btn lightbox__prev" type="button">‹</button>
+<img alt="Просмотр изображения" class="lightbox__img"/>
+<button aria-label="Следующее (→)" class="lightbox__btn lightbox__next" type="button">›</button>
+<div class="lightbox__counter">1/1</div>
+</div>
+</div>
+<script data-inline="lightbox">
+(function(){
+  const $$=(s,r=document)=>Array.from(r.querySelectorAll(s)), $=(s,r=document)=>r.querySelector(s);
+  const overlay=$('#lightbox-overlay'), img=$('.lightbox__img',overlay), counter=$('.lightbox__counter',overlay);
+  const btnPrev=$('.lightbox__prev',overlay), btnNext=$('.lightbox__next',overlay), btnClose=$('.lightbox__close',overlay);
+  let items=[], idx=0;
+
+  // Make images clickable & mark as gallery
+  $$('.portfolio img, .gallery img, .portfolio-grid img').forEach(el=>{
+    if(!el.closest('a')){ const a=document.createElement('a'); a.href=el.currentSrc||el.src; el.replaceWith(a); a.appendChild(el); }
+    el.setAttribute('data-gallery','portfolio');
+    el.parentElement.setAttribute('data-lightbox','portfolio');
+  });
+
+  function collect(){
+    items = $$('.portfolio img[data-gallery], .gallery img[data-gallery], .portfolio-grid img[data-gallery]')
+      .map(el=>({src: el.currentSrc||el.src, el}));
+  }
+  function openAt(i){
+    if(!items.length) collect();
+    idx = Math.max(0, Math.min(i, items.length-1));
+    img.src = items[idx].src;
+    overlay.classList.remove('hidden'); overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden'; updateCounter(); btnClose.focus();
+  }
+  function close(){ overlay.classList.add('hidden'); overlay.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  function prev(){ openAt((idx-1+items.length)%items.length); }
+  function next(){ openAt((idx+1)%items.length); }
+  function updateCounter(){ if(counter) counter.textContent=(idx+1)+'/'+items.length; }
+
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[data-lightbox], img[data-gallery]');
+    if(!a) return;
+    const imgEl = a.tagName==='A' ? $('img',a) : a;
+    if(!imgEl) return;
+    e.preventDefault();
+    collect();
+    const src = (imgEl.currentSrc||imgEl.src).split('#')[0];
+    const pos = items.findIndex(it => it.src.split('#')[0]===src);
+    openAt(pos>=0 ? pos : 0);
+  }, true);
+
+  btnPrev&&btnPrev.addEventListener('click', prev);
+  btnNext&&btnNext.addEventListener('click', next);
+  btnClose&&btnClose.addEventListener('click', close);
+  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) close(); });
+  document.addEventListener('keydown', (e)=>{
+    if(overlay.classList.contains('hidden')) return;
+    if(e.key==='Escape') close();
+    else if(e.key==='ArrowLeft') prev();
+    else if(e.key==='ArrowRight') next();
+  });
+  let sx=0; img.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+  img.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40) (dx>0?prev():next());},{passive:true});
+})();
+</script></body>
 </html>

@@ -2852,3 +2852,19 @@ body, p, li, input, select, textarea, button {
 .story-image .story-photo::after{
   pointer-events: none !important;
 }
+
+
+/* ---- Rebuilt 'Наша история' layout ---- */
+.story-section { margin: 60px auto; max-width: 1200px; padding: 0 20px; }
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.story-text { font-size: 16px; line-height: 1.75; }
+.story-media { display:flex; justify-content:center; align-items:center; }
+.story-media img{ width:100%; height:auto; max-height: 700px; object-fit: contain; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.18); }
+/* Make services go full-width below */
+.story-section .services-overview{ margin-top: 50px; }
+.story-section .services-overview .services-list{ display: grid; grid-template-columns: repeat(3,minmax(200px,1fr)); gap: 20px; }
+@media (max-width: 992px){
+  .story-grid{ grid-template-columns: 1fr; }
+  .story-media img{ max-height: none; }
+  .story-section .services-overview .services-list{ grid-template-columns: 1fr; }
+}

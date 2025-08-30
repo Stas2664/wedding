@@ -2826,3 +2826,29 @@ body, p, li, input, select, textarea, button {
 @media (max-width: 640px){
   .story-image img[src*="history-collage"]{ height: 320px; }
 }
+
+/* --- 'Наша история' — div с фоном вместо <img>, чтобы никакие галереи не цеплялись --- */
+.story-image .story-photo{
+  width: 100%;
+  height: 520px;
+  background-image: url("images/history-collage.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  box-shadow: 0 15px 45px rgba(0,0,0,.20);
+  filter: none !important;
+}
+@media (max-width: 992px){
+  .story-image .story-photo{ height: 420px; }
+}
+@media (max-width: 640px){
+  .story-content{ grid-template-columns: 1fr; gap: 2rem; }
+  .story-image .story-photo{ height: 320px; }
+}
+/* На всякий случай отключим возможные оверлеи от скриптов на это фото */
+.story-image .story-photo *,
+.story-image .story-photo::before,
+.story-image .story-photo::after{
+  pointer-events: none !important;
+}

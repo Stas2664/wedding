@@ -2738,3 +2738,21 @@ body, p, li, input, select, textarea, button {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-buttons a i { margin-right: 6px; }
+
+/* Telegram buttons match other CTA buttons */
+.btn-telegram, .btn.btn-telegram {
+  display: inline-flex; align-items:center; gap:10px;
+  border: 1px solid var(--color-accent-gold);
+  padding: 12px 18px; text-decoration:none;
+  color: var(--color-white); background: transparent;
+  transition: all .3s ease;
+}
+.btn-telegram:hover { background: var(--color-accent-gold); color:#000; }

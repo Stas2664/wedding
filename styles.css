@@ -802,21 +802,27 @@ p {
 /* Values Section - Luxury Style */
 .values-section {
     padding: 8rem 0;
-    background: var(--color-black);
+    background: transparent;
     color: var(--color-white);
     position: relative;
+    overflow: hidden;
 }
-
 .values-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--color-black) 0%, #1a1a1a 100%);
+    inset: 0;
+    background-image: linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,.75)), url('images/values-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: -1;
 }
+@supports not (background-image: url('x.webp')) {
+    .values-section::before {
+        background-image: linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,.75)), url('images/values-bg.jpg');
+    }
+}
+
 
 .values-section .section-title {
     color: var(--color-white);
@@ -2773,4 +2779,16 @@ body, p, li, input, select, textarea, button {
   object-fit: cover;
   object-position: center center;
   display: block;
+}
+
+
+/* ensure hero image paints immediately */
+.hero-image picture, .hero-image img {
+  opacity: 1;
+  will-change: transform;
+}
+
+/* smoother mobile parallax */
+@media (max-width: 767px) {
+  .hero { will-change: transform; }
 }

@@ -92,11 +92,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Parallax effect for hero section
     const hero = document.querySelector('.hero');
     if (hero) {
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            hero.style.transform = `translateY(${rate}px)`;
-        });
+        let ticking = false;
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const onScroll = () => {
+            if (ticking || prefersReduced) return;
+            ticking = true;
+            window.requestAnimationFrame(() => {
+                const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+                const factor = window.innerWidth < 768 ? -0.25 : -0.5; // мягче на мобилках
+                hero.style.transform = `translateY(${scrolled * factor}px)`;
+                ticking = false;
+            });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
     }
 
     // Luxury hover effects for buttons

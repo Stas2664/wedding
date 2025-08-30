@@ -2805,3 +2805,24 @@ body, p, li, input, select, textarea, button {
   .story-content{grid-template-columns: 1fr; gap: 2rem;}
   .story-image img[src*="history-collage"]{height: 320px;}
 }
+
+/* Fix 'Наша история' image: remove grayscale and ensure harmony */
+.story-image img[src*="history-collage"]{
+  filter: none !important;
+  -webkit-filter: none !important;
+  height: 520px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+  box-shadow: 0 15px 45px rgba(0,0,0,.2);
+}
+
+/* Align grid nicely and stack on mobile */
+@media (max-width: 992px){
+  .story-content{ grid-template-columns: 1fr; gap: 2rem; }
+  .story-image img[src*="history-collage"]{ height: 420px; }
+}
+@media (max-width: 640px){
+  .story-image img[src*="history-collage"]{ height: 320px; }
+}

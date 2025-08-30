@@ -418,18 +418,23 @@ function initializeAnimations() {
 // Lightbox (custom)
 (function(){
   function initLightbox(){
-    const links = Array.from(document.querySelectorAll('.portfolio-items a.lb-item'));
+    const container = document.querySelector('.portfolio-items');
     const modal = document.getElementById('lb-modal');
-    if (!modal || !links.length) return;
+    if (!container || !modal) return;
+
     const img = modal.querySelector('.lb-image');
     const prevBtn = modal.querySelector('.lb-prev');
     const nextBtn = modal.querySelector('.lb-next');
     const closeBtn = modal.querySelector('.lb-close');
+
+    // Gather anchors once (works even без класса lb-item)
+    let anchors = Array.from(container.querySelectorAll('a.lb-item, a[data-lightbox="portfolio"], .portfolio-image > a'));
+    if (!anchors.length) return;
+
     let idx = 0;
     function openAt(i){
-      idx = (i+links.length)%links.length;
-      const href = links[idx].getAttribute('href');
-      img.src = href;
+      idx = (i + anchors.length) % anchors.length;
+      img.src = anchors[idx].getAttribute('href');
       modal.classList.add('open');
       modal.setAttribute('aria-hidden','false');
       document.body.style.overflow='hidden';
@@ -442,21 +447,35 @@ function initializeAnimations() {
     }
     function prev(){ openAt(idx-1); }
     function next(){ openAt(idx+1); }
-    links.forEach((a,i)=>a.addEventListener('click', (e)=>{ e.preventDefault(); openAt(i); }));
+
+    // Delegated click handler — ловим клики по любому из нужных ссылок
+    container.addEventListener('click', function(e){
+      const a = e.target.closest('a.lb-item, a[data-lightbox="portfolio"], .portfolio-image > a');
+      if (!a || !container.contains(a)) return;
+      anchors = Array.from(container.querySelectorAll('a.lb-item, a[data-lightbox="portfolio"], .portfolio-image > a'));
+      const href = a.getAttribute('href');
+      const i = anchors.findIndex(x => x.getAttribute('href') === href);
+      if (i !== -1){
+        e.preventDefault();
+        openAt(i);
+      }
+    });
+
     prevBtn?.addEventListener('click', prev);
     nextBtn?.addEventListener('click', next);
     closeBtn?.addEventListener('click', close);
     modal.addEventListener('click', (e)=>{ if(e.target === modal) close(); });
+
     document.addEventListener('keydown', (e)=>{
       if (!modal.classList.contains('open')) return;
-      if (e.key==='Escape') close();
-      if (e.key==='ArrowLeft') prev();
-      if (e.key==='ArrowRight') next();
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
     });
   }
   if (document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', initLightbox);
-  } else {
+  }else{
     initLightbox();
   }
 })();

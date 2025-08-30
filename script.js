@@ -275,46 +275,59 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Smooth reveal for stats
+    
+    // Robust stats animation (one-time, accurate, supports suffixes like %, +, /7)
     const statsSection = document.querySelector('.stats-section');
     if (statsSection) {
-        const statNumbers = statsSection.querySelectorAll('.stat-number');
-        
-        const statsObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
+        const statItems = Array.from(statsSection.querySelectorAll('.stat-item'));
+        const statNumbers = Array.from(statsSection.querySelectorAll('.stat-number'));
+
+        // Pre-parse and store targets/suffixes
+        statNumbers.forEach((el) => {
+            const raw = (el.textContent || '').trim();
+            const m = raw.match(/^(\d+)(.*)$/);
+            let target = m ? parseInt(m[1], 10) : 0;
+            let suffix = m ? m[2] : '';
+            // Force satisfied clients to 100%
+            const label = el.parentElement.querySelector('.stat-label')?.textContent?.trim() || '';
+            if (/Довольных клиентов/i.test(label)) {
+                target = 100;
+                suffix = '%';
+            }
+            el.dataset.target = String(target);
+            el.dataset.suffix = suffix;
+            // Reset visible text for a clean start
+            el.textContent = '0' + suffix;
+        });
+
+        const animateNumber = (el) => {
+            const target = parseInt(el.dataset.target || '0', 10);
+            const suffix = el.dataset.suffix || '';
+            const duration = 1600; // ms
+            const start = performance.now();
+            const tick = (now) => {
+                const p = Math.min(1, (now - start) / duration);
+                const val = Math.floor(target * p);
+                el.textContent = val + suffix;
+                if (p < 1) requestAnimationFrame(tick);
+                else el.textContent = target + suffix; // ensure exact final value
+            };
+            requestAnimationFrame(tick);
+        };
+
+        const once = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    statNumbers.forEach((stat, index) => {
-                        setTimeout(() => {
-                            animateNumber(stat);
-                        }, index * 200);
-                    });
+                    statNumbers.forEach(animateNumber);
+                    obs.disconnect(); // run once
                 }
             });
-        }, { threshold: 0.5 });
-        
-        statsObserver.observe(statsSection);
+        }, { threshold: 0.3 });
+
+        once.observe(statsSection);
     }
 
-    // Animate numbers
-    function animateNumber(element) {
-        const text = element.textContent.trim();
-        const match = text.match(/^(\d+)(.*)$/);
-        const target = match ? parseInt(match[1], 10) : 0;
-        const suffix = match ? match[2] : '';
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
-        const timer = setInterval(() => {
-            current += step;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current) + suffix;
-        }, 16);
-    }
-
-    // Luxury scroll indicator
+// Luxury scroll indicator
     const scrollIndicator = document.createElement('div');
     scrollIndicator.className = 'scroll-indicator';
     scrollIndicator.innerHTML = `

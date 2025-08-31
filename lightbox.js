@@ -27,7 +27,7 @@
   }
 
   function init(){
-    const anchors = collectAnchors();
+    const anchors = Array.from(collectAnchors());
     if (!anchors.length) return;
 
     const modal = createModal();
@@ -58,13 +58,11 @@
     container.addEventListener('click', function(e){
       const a = e.target.closest('.portfolio-image > a, a[data-lightbox="portfolio"], .portfolio-items a');
       if (!a || !container.contains(a)) return;
-      const href = a.getAttribute('href');
-      let i = anchors.indexOf(a);
-      if (i === -1){
-        const href = a.getAttribute('href');
-        i = anchors.findIndex(x => x.getAttribute('href')===href);
+      const i = anchors.indexOf(a);
+      if (i !== -1){
+        e.preventDefault();
+        openAt(i);
       }
-      if (i !== -1){ e.preventDefault(); openAt(i); }
     });
 
     prevBtn.addEventListener('click', prev);

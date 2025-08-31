@@ -817,7 +817,7 @@ p {
     background-repeat: no-repeat;
     z-index: -1;
 }
-@supports not (background-image: url('images/values-bg.webp')) {
+@supports not (background-image: url('x.webp')) {
     .values-section::before {
         background-image: linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,.75)), url('images/values-bg.jpg');
     }
@@ -2900,7 +2900,7 @@ body, p, li, input, select, textarea, button {
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   border-radius: 10px;
 }
-.lb-btn{ z-index: 10001;
+.lb-btn{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -2914,24 +2914,13 @@ body, p, li, input, select, textarea, button {
   border-radius: 999px;
   user-select: none;
 }
-.lb-prev{ left: 10px; }
-.lb-next{ right: 10px; }
-.lb-close{ z-index: 10002;
-  position: absolute;
-  top: 10px;
-  right: 0;
-  font-size: 28px;
-  background: rgba(255,255,255,0.15);
-  border: none;
-  padding: 10px 12px;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 999px;
-}
+.lb-prev{position:absolute;top:50%;left:10px;transform:translateY(-50%)}
+.lb-next{position:absolute;top:50%;right:10px;transform:translateY(-50%)}
+.lb-close{position:absolute;top:10px;right:10px}
 @media (max-width: 640px){
-  .lb-prev{ left: 10px; }
-  .lb-next{ right: 10px; }
-  .lb-close{ z-index: 10002; top: 10px; right: 10px; }
+  .lb-prev{position:absolute;top:50%;left:10px;transform:translateY(-50%)}
+  .lb-next{position:absolute;top:50%;right:10px;transform:translateY(-50%)}
+  .lb-close{position:absolute;top:10px;right:10px}
 }
 /* ensure portfolio overlay doesn't block clicks */
 .portfolio-overlay{ pointer-events: none; }
@@ -2939,24 +2928,11 @@ body, p, li, input, select, textarea, button {
 
 
 /* === Lightbox controls: visible & inside frame === */
-.lb-prev{ left: 10px !important; }
-.lb-next{ right: 10px !important; }
-.lb-close{ z-index: 10002; top: 10px !important; right: 10px !important; }
+.lb-prev{position:absolute;top:50%;left:10px;transform:translateY(-50%)}
+.lb-next{position:absolute;top:50%;right:10px;transform:translateY(-50%)}
+.lb-close{position:absolute;top:10px;right:10px}
 
-.lb-btn, .lb-close{ z-index: 10002;
-  background: rgba(0,0,0,0.6);
-  color:#fff;
-  font-size:32px;
-  width:48px;
-  height:48px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:none;
-  border-radius:999px;
-  cursor:pointer;
-  z-index:2;
-}
+.lb-btn, .lb-close{position:absolute;top:10px;right:10px}
 .lb-btn:hover, .lb-close:hover{ background: rgba(0,0,0,0.8); }
 .lb-image{ position:relative; z-index:1; display:block; }
 
@@ -2967,11 +2943,11 @@ body, p, li, input, select, textarea, button {
 .lb-modal.open{display:flex}
 .lb-content{position:relative;max-width:92vw;max-height:92vh}
 .lb-image{max-width:92vw;max-height:92vh;display:block;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.4);position:relative;z-index:1}
-.lb-btn,.lb-close{ z-index: 10002;background:rgba(0,0,0,.6);color:#fff;font-size:32px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;cursor:pointer;z-index:2}
+.lb-btn,.lb-close{position:absolute;top:10px;right:10px}
 .lb-btn:hover,.lb-close:hover{background:rgba(0,0,0,.8)}
 .lb-prev{position:absolute;top:50%;left:10px;transform:translateY(-50%)}
 .lb-next{position:absolute;top:50%;right:10px;transform:translateY(-50%)}
-.lb-close{ z-index: 10002;position:absolute;top:10px;right:10px}
+.lb-close{position:absolute;top:10px;right:10px}
 /* portfolio overlay must not block clicks */
 .portfolio-overlay{pointer-events:none}
 .portfolio-image a{display:block}

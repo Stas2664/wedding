@@ -59,11 +59,12 @@
       const a = e.target.closest('.portfolio-image > a, a[data-lightbox="portfolio"], .portfolio-items a');
       if (!a || !container.contains(a)) return;
       const href = a.getAttribute('href');
-      const i = anchors.findIndex(x => x.getAttribute('href') === href);
-      if (i !== -1){
-        e.preventDefault();
-        openAt(i);
+      let i = anchors.indexOf(a);
+      if (i === -1){
+        const href = a.getAttribute('href');
+        i = anchors.findIndex(x => x.getAttribute('href')===href);
       }
+      if (i !== -1){ e.preventDefault(); openAt(i); }
     });
 
     prevBtn.addEventListener('click', prev);

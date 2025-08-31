@@ -1,8 +1,8 @@
 
 // Simple Lightbox (injected) — robust to any markup
-(function(){
+(function(){ if (window.__SLB_INIT__) return; window.__SLB_INIT__=true;
   function ready(fn){ if(document.readyState!='loading'){fn()} else document.addEventListener('DOMContentLoaded',fn); }
-  ready(function(){
+  ready(function(){ if (window.__SLB_INIT__) return; window.__SLB_INIT__=true;
     // Collect anchors that point to images inside portfolio or with data-lightbox
     var selector = [
       '.portfolio a',
@@ -64,7 +64,7 @@
         e.preventDefault();
         openAt(i);
       });
-    });
+    }, true);
 
     btnPrev.addEventListener('click', function(e){ e.preventDefault(); prev(); });
     btnNext.addEventListener('click', function(e){ e.preventDefault(); next(); });

@@ -1216,6 +1216,7 @@ p {
 }
 
 .portfolio-overlay {
+    pointer-events: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -1230,6 +1231,7 @@ p {
 }
 
 .portfolio-item:hover .portfolio-overlay {
+    pointer-events: none;
     opacity: 1;
 }
 

@@ -396,10 +396,6 @@ function initializeAnimations() {
     if (href.startsWith('#')) return;
     if (!sameOrigin(href)) return;
     if (a.target === '_blank') return;
-    // --- skip lightbox/gallery and direct image links ---
-    const isImageLink = /\.(?:jpe?g|png|webp|gif|svg)(?:\?.*)?$/i.test(href);
-    const isLightbox = a.matches('[data-lightbox], .lb-item') || a.closest('.portfolio-items');
-    if (isImageLink || isLightbox) return;
     a.addEventListener('click', (e) => {
       e.preventDefault();
       document.body.classList.add('page-leave');

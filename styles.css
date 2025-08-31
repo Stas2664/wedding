@@ -1216,7 +1216,6 @@ p {
 }
 
 .portfolio-overlay {
-    pointer-events: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -1231,7 +1230,6 @@ p {
 }
 
 .portfolio-item:hover .portfolio-overlay {
-    pointer-events: none;
     opacity: 1;
 }
 
@@ -2903,7 +2901,6 @@ body, p, li, input, select, textarea, button {
   border-radius: 10px;
 }
 .lb-btn{
-  z-index: 10001;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -2917,12 +2914,12 @@ body, p, li, input, select, textarea, button {
   border-radius: 999px;
   user-select: none;
 }
-.lb-prev{ left: 10px; }
-.lb-next{ right: 10px; }
+.lb-prev{ left: -60px; }
+.lb-next{ right: -60px; }
 .lb-close{
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -50px;
+  right: 0;
   font-size: 28px;
   background: rgba(255,255,255,0.15);
   border: none;
@@ -2931,7 +2928,6 @@ body, p, li, input, select, textarea, button {
   color: #fff;
   border-radius: 999px;
 }
-
 @media (max-width: 640px){
   .lb-prev{ left: 10px; }
   .lb-next{ right: 10px; }

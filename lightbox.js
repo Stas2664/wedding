@@ -56,14 +56,15 @@
     // Delegate clicks on the container
     const container = document.querySelector('.portfolio-items') || document;
     container.addEventListener('click', function(e){
-      const a = e.target.closest('a');
-      if (!a) return;
-      const i = anchors.indexOf(a);
+      const a = e.target.closest('.portfolio-image > a, a[data-lightbox="portfolio"], .portfolio-items a');
+      if (!a || !container.contains(a)) return;
+      const href = a.getAttribute('href');
+      const i = anchors.findIndex(x => x.getAttribute('href') === href);
       if (i !== -1){
         e.preventDefault();
         openAt(i);
       }
-      });
+    });
 
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);

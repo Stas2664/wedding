@@ -1,0 +1,14 @@
+
+/* Simple Lightbox (injected) */
+.slb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:10000;}
+.slb-overlay.open{display:flex;}
+.slb-stage{position:relative;max-width:92vw;max-height:92vh;}
+.slb-img{max-width:92vw;max-height:92vh;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.6);}
+.slb-btn{position:absolute;top:50%;transform:translateY(-50%);border:none;background:rgba(0,0,0,.5);color:#fff;font-size:28px;width:44px;height:44px;cursor:pointer;line-height:44px;text-align:center;border-radius:9999px;z-index:10001;}
+.slb-prev{left:10px;}
+.slb-next{right:10px;}
+.slb-close{top:10px;right:10px;transform:none;}
+.slb-close{position:absolute;border:none;background:rgba(0,0,0,.5);color:#fff;font-size:24px;width:40px;height:40px;border-radius:9999px;cursor:pointer;z-index:10002;}
+@media (hover:hover){
+ .slb-btn:hover,.slb-close:hover{background:rgba(0,0,0,.7);}
+}

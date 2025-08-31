@@ -27,7 +27,7 @@
   }
 
   function init(){
-    const anchors = Array.from(collectAnchors());
+    const anchors = collectAnchors();
     if (!anchors.length) return;
 
     const modal = createModal();

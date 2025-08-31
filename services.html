@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги - wedding rave</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style id="final-visibility-overrides">
+  :root{
+    --text-dark:#1a1a1a;
+    --text-light:#F8F5F0;
+  }
+  /* Make sure animations never leave text invisible on iOS */
+  @supports (-webkit-touch-callout: none){
+    .fade-in-up,.fade-in-left,.fade-in-right,.scale-in{opacity:1!important;transform:none!important;}
+  }
+  /* Dark sections — light text */
+  .hero,.stats-section,.values-section,.cta-section,.footer{color:var(--text-light)!important;}
+  .hero *,.stats-section *,.values-section *,.cta-section *,.footer *{color:inherit!important;}
+  /* Light sections & cards — dark text */
+  .page-header,.team-section,.services-section,.contact-info,.contact-form-section,
+  .portfolio-stats,.faq-section,.service-card,.review-card,.review-item,.overall-rating,
+  .map-section,.additional-services,.additional-card,.all-reviews,.portfolio-filter,
+  .view-project,.contact-card,.story-content,.about-content,.team-content{color:var(--text-dark)!important;}
+  .page-header *,.team-section *,.services-section *,.contact-info *,.contact-form-section *,
+  .portfolio-stats *,.faq-section *,.service-card *,.review-card *,.review-item *,.overall-rating *,
+  .map-section *,.additional-services *,.additional-card *,.all-reviews *,.portfolio-filter *,
+  .view-project *,.contact-card *,.story-content *,.about-content *,.team-content *{color:inherit!important;}
+  /* Stats numbers inherit */
+  .stat-number,.stat-label{color:inherit!important;text-shadow:none!important;}
+  /* Navbar brand readable */
+  .nav-logo a{color:#fff!important;}
+  /* Footer social compact icons */
+  .footer-social .social-link{width:44px;height:44px;border-radius:50%;font-size:0;}
+  .footer-social .social-link i,.footer-social .social-link svg{font-size:22px;width:22px;height:22px;}
+  /* Contact social pills */
+  .social-icons{display:flex;gap:12px;flex-wrap:wrap;}
+  .social-icons .social-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:9999px;background:var(--color-accent-gold);color:#000!important;border-color:var(--color-accent-gold);width:auto;height:auto;}
+  .social-icons .social-link i,.social-icons .social-link svg{font-size:18px;width:18px;height:18px;}
+  .social-icons .social-link span{display:inline;}
+</style>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">wedding rave</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="about.html" class="nav-link">О нас</a>
+                <a href="services.html" class="nav-link active">Услуги</a>
+                <a href="portfolio.html" class="nav-link">Портфолио</a>
+                <a href="reviews.html" class="nav-link">Отзывы</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">НАШИ УСЛУГИ</h1>
+            <p class="page-subtitle">Полный спектр услуг для создания вашего идеального торжества</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <!-- Wedding Full Service -->
+            <div class="service-item">
+                <div class="service-image">
+                    <img src="фото для сайта/photo_2025-08-25_00-56-36.jpg" alt="Свадьба под ключ">
+                </div>
+                <div class="service-content">
+                    <h2>СВАДЬБА ПОД КЛЮЧ</h2>
+                    <p class="service-description">Полная организация вашей свадьбы от идеи до финального тоста. Мы берем на себя все заботы, чтобы вы могли наслаждаться каждым моментом своего особенного дня.</p>
+                    
+                    <div class="service-includes">
+                        <h3>В УСЛУГУ ВХОДИТ:</h3>
+                        <ul>
+                            <li><strong>Организация</strong> - полное планирование и координация всех процессов</li>
+                            <li><strong>Стиль и Концепция</strong> - разработка уникального дизайна и стилистики</li>
+                            <li><strong>Сценарный Менеджмент</strong> - создание и проведение программы торжества</li>
+                            <li><strong>Подбор площадки</strong> - поиск и бронирование идеального места</li>
+                            <li><strong>Работа с подрядчиками</strong> - координация всех участников</li>
+                            <li><strong>Координация в день свадьбы</strong> - контроль всех процессов</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <a href="contacts.html" class="btn btn-primary">ОСТАВИТЬ ЗАЯВКУ</a>
+                </div>
+            </div>
+
+            <!-- Wedding Coordination -->
+            <div class="service-item reverse">
+                <div class="service-image">
+                    <img src="фото для сайта/photo_2025-08-25_00-56-26.jpg" alt="Координация свадьбы">
+                </div>
+                <div class="service-content">
+                    <h2>КООРДИНАЦИЯ СВАДЬБЫ</h2>
+                    <p class="service-description">Если вы самостоятельно продумали сценарий, но в день Х хотите быть спокойны и насладиться своим праздником, наша команда возьмет на себя координацию всех процессов.</p>
+                    
+                    <div class="service-includes">
+                        <h3>В УСЛУГУ ВХОДИТ:</h3>
+                        <ul>
+                            <li><strong>Координация в день свадьбы</strong> - контроль всех процессов</li>
+                            <li><strong>Встреча гостей</strong> - помощь в организации приема</li>
+                            <li><strong>Координация подрядчиков</strong> - контроль работы всех участников</li>
+                            <li><strong>Решение форс-мажоров</strong> - быстрое реагирование на ситуации</li>
+                            <li><strong>Обеспечение комфорта молодоженов</strong> - забота о вашем спокойствии</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <a href="contacts.html" class="btn btn-primary">СВЯЗАТЬСЯ СО МНОЙ</a>
+                </div>
+            </div>
+
+            <!-- Event Organization -->
+            <div class="service-item">
+                <div class="service-image">
+                    <img src="фото для сайта/photo_2025-08-25_00-56-24.jpg" alt="Организация мероприятий">
+                </div>
+                <div class="service-content">
+                    <h2>ОРГАНИЗАЦИЯ МЕРОПРИЯТИЙ</h2>
+                    <p class="service-description">Помогу в организации девичника, дня рождения, гендер-пати, корпоратива и других мероприятий. Каждое событие будет уникальным и запоминающимся.</p>
+                    
+                    <div class="service-includes">
+                        <h3>В УСЛУГУ ВХОДИТ:</h3>
+                        <ul>
+                            <li><strong>Разработка концепции</strong> - создание уникальной идеи мероприятия</li>
+                            <li><strong>Подбор площадки</strong> - поиск подходящего места</li>
+                            <li><strong>Организация развлечений</strong> - подбор ведущих и артистов</li>
+                            <li><strong>Координация в день события</strong> - контроль всех процессов</li>
+                            <li><strong>Фото и видео сопровождение</strong> - организация съемки</li>
+                        </ul>
+                    </div>
+                    
+                   
+                    
+                    <a href="contacts.html" class="btn btn-primary">СВЯЗАТЬСЯ С НАМИ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>КАК МЫ РАБОТАЕМ</h2>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <h3>ЗНАКОМСТВО</h3>
+                    <p>Встречаемся, обсуждаем ваши идеи и пожелания</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <h3>ПЛАНИРОВАНИЕ</h3>
+                    <p>Создаем концепцию и план организации</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <h3>РЕАЛИЗАЦИЯ</h3>
+                    <p>Организуем все процессы и контролируем качество</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <h3>ПРОВЕДЕНИЕ</h3>
+                    <p>Координируем мероприятие в день события</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>ГОТОВЫ ОБСУДИТЬ ВАШИ ИДЕИ?</h2>
+                <p>Оставьте заявку, и мы свяжемся с вами для бесплатной консультации</p>
+                <a href="contacts.html" class="btn btn-primary btn-large">
+                    ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                            <div class="footer-logo">
+                <h3>wedding rave</h3>
+                <p>Организация свадеб мечты</p>
+            </div>
+                <div class="footer-links">
+                    <a href="about.html">О нас</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="portfolio.html">Портфолио</a>
+                    <a href="contacts.html">Контакты</a>
+                </div>
+                            <div class="footer-social">
+                <a href="https://www.instagram.com/wedding_rave?igsh=MWtxNGZhaGR1MG11aw%3D%3D&utm_source=qr" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/89104656880" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 wedding rave. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=13"></script>
+</body>
+</html>

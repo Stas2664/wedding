@@ -68,7 +68,7 @@
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);
     closeBtn.addEventListener('click', close);
-    modal.addEventListener('click', (e)=>{ if(e.target === modal) close(); });
+    modal.addEventListener('click', (e) => { e.preventDefault(); if (e.stopImmediatePropagation) e.stopImmediatePropagation();  if(e.target === modal) close(); });
     document.addEventListener('keydown', (e)=>{
       if (!modal.classList.contains('open')) return;
       if (e.key === 'Escape') close();
@@ -76,6 +76,19 @@
       if (e.key === 'ArrowRight') next();
     });
   }
+
+// Fallback delegation: if anchors added later, intercept clicks
+document.addEventListener('click', function(e){
+  const a = e.target.closest('a[data-lightbox="portfolio"], .lb-item');
+  if (!a) return;
+  e.preventDefault();
+  if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+  const anchors = collectAnchors();
+  const idx = anchors.indexOf(a);
+  if (idx >= 0) {
+    openAt(idx);
+  }
+}, true);
 
   if (document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', init);

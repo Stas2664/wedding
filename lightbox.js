@@ -58,13 +58,12 @@
     container.addEventListener('click', function(e){
       const a = e.target.closest('.portfolio-image > a, a[data-lightbox="portfolio"], .portfolio-items a');
       if (!a || !container.contains(a)) return;
-      const href = a.getAttribute('href');
       const i = anchors.indexOf(a);
       if (i !== -1){
         e.preventDefault();
         openAt(i);
       }
-    }, true);
+    });
 
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);

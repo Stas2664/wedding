@@ -399,8 +399,7 @@ function initializeAnimations() {
     // --- skip lightbox/gallery and direct image links ---
     const isImageLink = /\.(?:jpe?g|png|webp|gif|svg)(?:\?.*)?$/i.test(href);
     const isLightbox = a.matches('[data-lightbox], .lb-item') || a.closest('.portfolio-items');
-    const skipTransition = a.classList && a.classList.contains('no-transition');
-    if (isImageLink || isLightbox || skipTransition) return;
+    if (isImageLink || isLightbox) return;
     a.addEventListener('click', (e) => {
       e.preventDefault();
       document.body.classList.add('page-leave');

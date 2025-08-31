@@ -77,7 +77,7 @@
     });
   }
 
-// Fallback delegation: if anchors added later, intercept clicks
+// Fallback delegation: intercept clicks on portfolio items
 document.addEventListener('click', function(e){
   const a = e.target.closest('a[data-lightbox="portfolio"], .lb-item');
   if (!a) return;

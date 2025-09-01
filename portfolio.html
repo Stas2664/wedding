@@ -282,6 +282,17 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopPropagation();
             openLightbox(index);
         });
+        
+        // Также добавляем обработчик на само изображение
+        const img = image.querySelector('img');
+        if (img) {
+            img.addEventListener('click', function(e) {
+                console.log('Image img clicked:', index);
+                e.preventDefault();
+                e.stopPropagation();
+                openLightbox(index);
+            });
+        }
     });
 
     // Обработчики для кнопок
@@ -331,6 +342,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
         }
     });
+
+    // Добавляем обработчик на весь контейнер портфолио
+    const portfolioContainer = document.querySelector('.portfolio-items');
+    if (portfolioContainer) {
+        portfolioContainer.addEventListener('click', function(e) {
+            const clickedImage = e.target.closest('.portfolio-image a');
+            if (clickedImage) {
+                const index = Array.from(images).indexOf(clickedImage);
+                if (index !== -1) {
+                    console.log('Container click detected, image index:', index);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openLightbox(index);
+                }
+            }
+        });
+    }
+
+    // Добавляем тестовую кнопку
+    const testButton = document.createElement('button');
+    testButton.textContent = 'Тест Lightbox';
+    testButton.style.cssText = 'position: fixed; top: 10px; left: 10px; z-index: 10000; padding: 10px; background: red; color: white; border: none; cursor: pointer;';
+    testButton.addEventListener('click', function() {
+        console.log('Test button clicked');
+        if (images.length > 0) {
+            openLightbox(0);
+        }
+    });
+    document.body.appendChild(testButton);
 
     console.log('Inline lightbox initialization complete');
 });

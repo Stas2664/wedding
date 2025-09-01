@@ -2983,6 +2983,17 @@ body, p, li, input, select, textarea, button {
 .portfolio-image a {
   display: block;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-image img {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.portfolio-item {
+  cursor: pointer;
 }
 
 /* Responsive adjustments */

@@ -1,214 +1,126 @@
-
-// Standalone Lightbox (no dependencies)
-(function(){
-  function createModal(){
-    let modal = document.getElementById('lb-modal');
-    if (modal) return modal;
-    modal = document.createElement('div');
-    modal.id = 'lb-modal';
-    modal.className = 'lb-modal';
-    modal.setAttribute('aria-hidden','true');
-    modal.innerHTML = '<div class="lb-content">\
-      <img class="lb-image" alt="Просмотр изображения"/>\
-      <button class="lb-btn lb-prev" aria-label="Предыдущее">‹</button>\
-      <button class="lb-btn lb-next" aria-label="Следующее">›</button>\
-      <button class="lb-close" aria-label="Закрыть">×</button>\
-      <div class="lb-counter">1 / 1</div>\
-    </div>';
+// Simple Lightbox
+document.addEventListener('DOMContentLoaded', function() {
+    // Создаем модальное окно
+    const modal = document.createElement('div');
+    modal.id = 'lightbox-modal';
+    modal.className = 'lightbox-modal';
+    modal.innerHTML = `
+        <div class="lightbox-content">
+            <img class="lightbox-image" src="" alt="Просмотр изображения">
+            <button class="lightbox-prev">‹</button>
+            <button class="lightbox-next">›</button>
+            <button class="lightbox-close">×</button>
+            <div class="lightbox-counter">1 / 1</div>
+        </div>
+    `;
     document.body.appendChild(modal);
-    return modal;
-  }
 
-  function collectAnchors(){
-    const container = document.querySelector('.portfolio-items') || document;
-    const selector = '.portfolio-image > a, a[data-lightbox="portfolio"], .portfolio-items a';
-    const list = Array.from(container.querySelectorAll(selector))
-      .filter(a => /\.(jpe?g|png|webp|gif)$/i.test(a.getAttribute('href')||''));
-    return list;
-  }
+    // Получаем все изображения в портфолио
+    const images = document.querySelectorAll('.portfolio-image a[href*=".jpg"], .portfolio-image a[href*=".jpeg"], .portfolio-image a[href*=".png"]');
+    let currentIndex = 0;
 
-  function init(){
-    const anchors = collectAnchors();
-    if (!anchors.length) return;
+    const modalElement = document.getElementById('lightbox-modal');
+    const imageElement = modalElement.querySelector('.lightbox-image');
+    const prevButton = modalElement.querySelector('.lightbox-prev');
+    const nextButton = modalElement.querySelector('.lightbox-next');
+    const closeButton = modalElement.querySelector('.lightbox-close');
+    const counterElement = modalElement.querySelector('.lightbox-counter');
 
-    const modal = createModal();
-    const img = modal.querySelector('.lb-image');
-    const prevBtn = modal.querySelector('.lb-prev');
-    const nextBtn = modal.querySelector('.lb-next');
-    const closeBtn = modal.querySelector('.lb-close');
-    const counter = modal.querySelector('.lb-counter');
-    let idx = 0;
-    let isAnimating = false;
-
-    function openAt(i){
-      if (isAnimating) return;
-      isAnimating = true;
-      
-      idx = (i + anchors.length) % anchors.length;
-      const newSrc = anchors[idx].getAttribute('href');
-      
-      // Если изображение уже загружено, показываем сразу
-      if (img.src === newSrc) {
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden','false');
-        document.body.style.overflow='hidden';
-        isAnimating = false;
-        return;
-      }
-      
-      // Загружаем новое изображение
-      img.classList.add('loading');
-      img.onload = function() {
-        img.classList.remove('loading');
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden','false');
-        document.body.style.overflow='hidden';
-        // Обновляем счетчик
-        counter.textContent = (idx + 1) + ' / ' + anchors.length;
-        isAnimating = false;
-      };
-      
-      img.onerror = function() {
-        img.classList.remove('loading');
-        console.error('Ошибка загрузки изображения:', newSrc);
-        isAnimating = false;
-      };
-      
-      img.src = newSrc;
-    }
-    
-    function close(){
-      if (isAnimating) return;
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden','true');
-      document.body.style.overflow='';
-      // Не очищаем src, чтобы изображение оставалось в кеше
-    }
-    
-    function prev(){ 
-      if (!isAnimating) openAt(idx-1); 
-    }
-    
-    function next(){ 
-      if (!isAnimating) openAt(idx+1); 
+    // Функция открытия lightbox
+    function openLightbox(index) {
+        currentIndex = index;
+        const imageSrc = images[currentIndex].getAttribute('href');
+        imageElement.src = imageSrc;
+        counterElement.textContent = `${currentIndex + 1} / ${images.length}`;
+        modalElement.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
-    // Обработчик кликов по изображениям
-    const container = document.querySelector('.portfolio-items') || document;
-    container.addEventListener('click', function(e){
-      const a = e.target.closest('.portfolio-image > a, a[data-lightbox="portfolio"], .portfolio-items a');
-      if (!a || !container.contains(a)) return;
-      const i = anchors.indexOf(a);
-      if (i !== -1){
-        e.preventDefault();
-        e.stopPropagation();
-        openAt(i);
-      }
+    // Функция закрытия lightbox
+    function closeLightbox() {
+        modalElement.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Функция показа предыдущего изображения
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        const imageSrc = images[currentIndex].getAttribute('href');
+        imageElement.src = imageSrc;
+        counterElement.textContent = `${currentIndex + 1} / ${images.length}`;
+    }
+
+    // Функция показа следующего изображения
+    function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        const imageSrc = images[currentIndex].getAttribute('href');
+        imageElement.src = imageSrc;
+        counterElement.textContent = `${currentIndex + 1} / ${images.length}`;
+    }
+
+    // Добавляем обработчики событий для изображений
+    images.forEach((image, index) => {
+        image.addEventListener('click', function(e) {
+            e.preventDefault();
+            openLightbox(index);
+        });
     });
 
-    // Обработчики кнопок
-    prevBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      prev();
-    });
-    
-    nextBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      next();
-    });
-    
-    closeBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      close();
-    });
-    
+    // Обработчики для кнопок
+    prevButton.addEventListener('click', showPrev);
+    nextButton.addEventListener('click', showNext);
+    closeButton.addEventListener('click', closeLightbox);
+
     // Закрытие по клику на фон
-    modal.addEventListener('click', function(e){
-      if(e.target === modal) {
-        close();
-      }
+    modalElement.addEventListener('click', function(e) {
+        if (e.target === modalElement) {
+            closeLightbox();
+        }
     });
-    
+
     // Обработка клавиатуры
-    document.addEventListener('keydown', function(e){
-      if (!modal.classList.contains('open')) return;
-      
-      switch(e.key) {
-        case 'Escape':
-          e.preventDefault();
-          close();
-          break;
-        case 'ArrowLeft':
-          e.preventDefault();
-          prev();
-          break;
-        case 'ArrowRight':
-          e.preventDefault();
-          next();
-          break;
-      }
+    document.addEventListener('keydown', function(e) {
+        if (!modalElement.classList.contains('active')) return;
+        
+        switch(e.key) {
+            case 'Escape':
+                closeLightbox();
+                break;
+            case 'ArrowLeft':
+                showPrev();
+                break;
+            case 'ArrowRight':
+                showNext();
+                break;
+        }
     });
-    
+
     // Поддержка свайпов на мобильных устройствах
     let startX = 0;
     let startY = 0;
-    let isDragging = false;
-    
-    modal.addEventListener('touchstart', function(e) {
-      if (e.touches.length === 1) {
+
+    modalElement.addEventListener('touchstart', function(e) {
         startX = e.touches[0].clientX;
         startY = e.touches[0].clientY;
-        isDragging = true;
-      }
     });
-    
-    modal.addEventListener('touchmove', function(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-    });
-    
-    modal.addEventListener('touchend', function(e) {
-      if (!isDragging) return;
-      
-      const endX = e.changedTouches[0].clientX;
-      const endY = e.changedTouches[0].clientY;
-      const deltaX = startX - endX;
-      const deltaY = startY - endY;
-      
-      // Минимальное расстояние для свайпа
-      const minSwipeDistance = 50;
-      
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
-        if (deltaX > 0) {
-          // Свайп влево - следующее изображение
-          next();
-        } else {
-          // Свайп вправо - предыдущее изображение
-          prev();
-        }
-      }
-      
-      isDragging = false;
-    });
-    
-    // Предзагрузка изображений для плавного пролистывания
-    function preloadImages() {
-      anchors.forEach(anchor => {
-        const img = new Image();
-        img.src = anchor.getAttribute('href');
-      });
-    }
-    
-    // Запускаем предзагрузку после небольшой задержки
-    setTimeout(preloadImages, 1000);
-  }
 
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
+    modalElement.addEventListener('touchend', function(e) {
+        if (!modalElement.classList.contains('active')) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const deltaX = startX - endX;
+        const deltaY = startY - endY;
+        
+        // Минимальное расстояние для свайпа
+        const minSwipeDistance = 50;
+        
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+            if (deltaX > 0) {
+                showNext();
+            } else {
+                showPrev();
+            }
+        }
+    });
+});

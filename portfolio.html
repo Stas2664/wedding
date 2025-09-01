@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&amp;family=Manrope:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="styles.css?v=16" rel="stylesheet"/>
+<link href="styles.css?v=17" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 <style id="final-visibility-overrides">
   :root{
@@ -193,23 +193,25 @@
 </div>
 </footer>
 <script src="script.js?v=15"></script>
+<!-- Custom Lightbox Modal -->
 <script>
-// Максимально простой Lightbox
+// МАКСИМАЛЬНО НАДЕЖНЫЙ LIGHTBOX
 (function() {
     'use strict';
     
-    // Ждем полной загрузки страницы
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            initLightbox();
-        }, 100);
-    });
+    let lightboxInitialized = false;
+    let modal = null;
+    let images = [];
+    let currentIndex = 0;
     
+    // Функция инициализации
     function initLightbox() {
-        console.log('Initializing lightbox...');
+        if (lightboxInitialized) return;
+        
+        console.log('🚀 Инициализация максимально надежного lightbox...');
         
         // Создаем модальное окно
-        const modal = document.createElement('div');
+        modal = document.createElement('div');
         modal.id = 'lightbox-modal';
         modal.className = 'lightbox-modal';
         modal.innerHTML = `
@@ -222,17 +224,36 @@
             </div>
         `;
         document.body.appendChild(modal);
-        console.log('Modal created');
+        console.log('✅ Модальное окно создано');
         
-        // Находим все изображения
-        const images = document.querySelectorAll('.portfolio-image a');
-        console.log('Found images:', images.length);
+        // Находим ВСЕ изображения разными способами
+        const selectors = [
+            '.portfolio-image a',
+            '.portfolio-item a',
+            'a[data-lightbox]',
+            'a[href*=".jpg"]',
+            'a[href*=".jpeg"]',
+            'a[href*=".png"]',
+            'a[href*=".webp"]'
+        ];
         
-        let currentIndex = 0;
+        images = [];
+        selectors.forEach(selector => {
+            const found = document.querySelectorAll(selector);
+            found.forEach(img => {
+                if (!images.includes(img)) {
+                    images.push(img);
+                }
+            });
+        });
         
-        // Глобальные функции для кнопок
+        console.log('📸 Найдено изображений:', images.length);
+        
+        // Глобальные функции
         window.lightboxOpen = function(index) {
-            console.log('Opening lightbox at index:', index);
+            console.log('🔓 Открытие lightbox, индекс:', index);
+            if (!modal || !images[index]) return;
+            
             currentIndex = index;
             const imageSrc = images[currentIndex].getAttribute('href');
             const imageElement = modal.querySelector('.lightbox-image');
@@ -245,13 +266,15 @@
         };
         
         window.lightboxClose = function() {
-            console.log('Closing lightbox');
+            console.log('🔒 Закрытие lightbox');
+            if (!modal) return;
             modal.classList.remove('active');
             document.body.style.overflow = '';
         };
         
         window.lightboxPrev = function() {
-            console.log('Previous image');
+            console.log('⬅️ Предыдущее изображение');
+            if (!modal || images.length === 0) return;
             currentIndex = (currentIndex - 1 + images.length) % images.length;
             const imageSrc = images[currentIndex].getAttribute('href');
             const imageElement = modal.querySelector('.lightbox-image');
@@ -262,7 +285,8 @@
         };
         
         window.lightboxNext = function() {
-            console.log('Next image');
+            console.log('➡️ Следующее изображение');
+            if (!modal || images.length === 0) return;
             currentIndex = (currentIndex + 1) % images.length;
             const imageSrc = images[currentIndex].getAttribute('href');
             const imageElement = modal.querySelector('.lightbox-image');
@@ -272,30 +296,41 @@
             counterElement.textContent = (currentIndex + 1) + ' / ' + images.length;
         };
         
-        // Добавляем обработчики для изображений
+        // Добавляем обработчики ВСЕМИ способами
         images.forEach(function(image, index) {
-            console.log('Adding click handler to image', index);
+            console.log('🔗 Добавление обработчика для изображения', index);
+            
+            // Обработчик на ссылку
             image.addEventListener('click', function(e) {
-                console.log('Image clicked:', index);
+                console.log('🖱️ Клик по ссылке, индекс:', index);
                 e.preventDefault();
                 e.stopPropagation();
                 window.lightboxOpen(index);
             });
+            
+            // Обработчик на изображение внутри ссылки
+            const img = image.querySelector('img');
+            if (img) {
+                img.addEventListener('click', function(e) {
+                    console.log('🖱️ Клик по изображению, индекс:', index);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.lightboxOpen(index);
+                });
+            }
         });
         
-        // Дополнительный обработчик на весь контейнер
+        // Обработчик на весь контейнер портфолио
         const portfolioContainer = document.querySelector('.portfolio-items');
         if (portfolioContainer) {
             portfolioContainer.addEventListener('click', function(e) {
-                const clickedImage = e.target.closest('.portfolio-image a');
-                if (clickedImage) {
-                    const index = Array.from(images).indexOf(clickedImage);
-                    if (index !== -1) {
-                        console.log('Container click detected, image index:', index);
-                        e.preventDefault();
-                        e.stopPropagation();
-                        window.lightboxOpen(index);
-                    }
+                const clickedImage = e.target.closest('a');
+                if (clickedImage && images.includes(clickedImage)) {
+                    const index = images.indexOf(clickedImage);
+                    console.log('🖱️ Клик по контейнеру, индекс:', index);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.lightboxOpen(index);
                 }
             });
         }
@@ -309,7 +344,7 @@
         
         // Обработка клавиатуры
         document.addEventListener('keydown', function(e) {
-            if (!modal.classList.contains('active')) return;
+            if (!modal || !modal.classList.contains('active')) return;
             
             switch(e.key) {
                 case 'Escape':
@@ -324,8 +359,53 @@
             }
         });
         
-        console.log('Lightbox initialization complete');
+        lightboxInitialized = true;
+        console.log('✅ Lightbox полностью инициализирован!');
+        
+        // Добавляем тестовую кнопку для проверки
+        const testButton = document.createElement('button');
+        testButton.textContent = '🧪 Тест Lightbox';
+        testButton.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        `;
+        testButton.onclick = function() {
+            if (images.length > 0) {
+                window.lightboxOpen(0);
+            } else {
+                alert('Изображения не найдены!');
+            }
+        };
+        document.body.appendChild(testButton);
     }
+    
+    // Множественные способы запуска
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLightbox);
+    } else {
+        initLightbox();
+    }
+    
+    window.addEventListener('load', function() {
+        setTimeout(initLightbox, 100);
+    });
+    
+    // Принудительная инициализация через 1 секунду
+    setTimeout(initLightbox, 1000);
+    
+    // Принудительная инициализация через 3 секунды
+    setTimeout(initLightbox, 3000);
+    
+    console.log('🚀 Lightbox скрипт загружен и готов к работе!');
 })();
 </script>
 </body>

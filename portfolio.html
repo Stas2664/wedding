@@ -193,150 +193,152 @@
 </div>
 </footer>
 <script src="script.js?v=15"></script>
-<!-- Custom Lightbox Modal -->
 <script>
-// Встроенный Lightbox
-
-document.addEventListener('DOMContentLoaded', function() {
+// Простой и надежный Lightbox
+(function() {
+    'use strict';
     
-    // Создаем модальное окно
-    const modal = document.createElement('div');
-    modal.id = 'lightbox-modal';
-    modal.className = 'lightbox-modal';
-    modal.innerHTML = `
-        <div class="lightbox-content">
-            <img class="lightbox-image" src="" alt="Просмотр изображения">
-            <button class="lightbox-prev">‹</button>
-            <button class="lightbox-next">›</button>
-            <button class="lightbox-close">×</button>
-            <div class="lightbox-counter">1 / 1</div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-
-    // Находим все изображения
-    const images = document.querySelectorAll('.portfolio-image a');
-
-    let currentIndex = 0;
-
-    const modalElement = document.getElementById('lightbox-modal');
-    const imageElement = modalElement.querySelector('.lightbox-image');
-    const prevButton = modalElement.querySelector('.lightbox-prev');
-    const nextButton = modalElement.querySelector('.lightbox-next');
-    const closeButton = modalElement.querySelector('.lightbox-close');
-    const counterElement = modalElement.querySelector('.lightbox-counter');
-
-    // Функция открытия lightbox
-    function openLightbox(index) {
-        currentIndex = index;
-        const imageSrc = images[currentIndex].getAttribute('href');
-        imageElement.src = imageSrc;
-        counterElement.textContent = `${currentIndex + 1} / ${images.length}`;
-        modalElement.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    // Функция закрытия lightbox
-    function closeLightbox() {
-        modalElement.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    // Функция показа предыдущего изображения
-    function showPrev() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        const imageSrc = images[currentIndex].getAttribute('href');
-        imageElement.src = imageSrc;
-        counterElement.textContent = `${currentIndex + 1} / ${images.length}`;
-    }
-
-    // Функция показа следующего изображения
-    function showNext() {
-        currentIndex = (currentIndex + 1) % images.length;
-        const imageSrc = images[currentIndex].getAttribute('href');
-        imageElement.src = imageSrc;
-        counterElement.textContent = `${currentIndex + 1} / ${images.length}`;
-    }
-
-    // Добавляем обработчики событий для изображений
-    images.forEach((image, index) => {
-        image.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openLightbox(index);
-        });
+    // Ждем полной загрузки страницы
+    window.addEventListener('load', function() {
+        initLightbox();
+    });
+    
+    function initLightbox() {
+        // Создаем модальное окно
+        const modal = document.createElement('div');
+        modal.id = 'lightbox-modal';
+        modal.className = 'lightbox-modal';
+        modal.innerHTML = `
+            <div class="lightbox-content">
+                <img class="lightbox-image" src="" alt="Просмотр изображения">
+                <button class="lightbox-prev" onclick="lightboxPrev()">‹</button>
+                <button class="lightbox-next" onclick="lightboxNext()">›</button>
+                <button class="lightbox-close" onclick="lightboxClose()">×</button>
+                <div class="lightbox-counter">1 / 1</div>
+            </div>
+        `;
+        document.body.appendChild(modal);
         
-        // Также добавляем обработчик на само изображение
-        const img = image.querySelector('img');
-        if (img) {
-            img.addEventListener('click', function(e) {
+        // Находим все изображения
+        const images = document.querySelectorAll('.portfolio-image a');
+        let currentIndex = 0;
+        
+        // Глобальные функции для кнопок
+        window.lightboxOpen = function(index) {
+            currentIndex = index;
+            const imageSrc = images[currentIndex].getAttribute('href');
+            const imageElement = modal.querySelector('.lightbox-image');
+            const counterElement = modal.querySelector('.lightbox-counter');
+            
+            imageElement.src = imageSrc;
+            counterElement.textContent = (currentIndex + 1) + ' / ' + images.length;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        
+        window.lightboxClose = function() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        
+        window.lightboxPrev = function() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            const imageSrc = images[currentIndex].getAttribute('href');
+            const imageElement = modal.querySelector('.lightbox-image');
+            const counterElement = modal.querySelector('.lightbox-counter');
+            
+            imageElement.src = imageSrc;
+            counterElement.textContent = (currentIndex + 1) + ' / ' + images.length;
+        };
+        
+        window.lightboxNext = function() {
+            currentIndex = (currentIndex + 1) % images.length;
+            const imageSrc = images[currentIndex].getAttribute('href');
+            const imageElement = modal.querySelector('.lightbox-image');
+            const counterElement = modal.querySelector('.lightbox-counter');
+            
+            imageElement.src = imageSrc;
+            counterElement.textContent = (currentIndex + 1) + ' / ' + images.length;
+        };
+        
+        // Добавляем обработчики для изображений
+        images.forEach(function(image, index) {
+            image.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                openLightbox(index);
+                lightboxOpen(index);
+            });
+        });
+        
+        // Дополнительный обработчик на весь контейнер
+        const portfolioContainer = document.querySelector('.portfolio-items');
+        if (portfolioContainer) {
+            portfolioContainer.addEventListener('click', function(e) {
+                const clickedImage = e.target.closest('.portfolio-image a');
+                if (clickedImage) {
+                    const index = Array.from(images).indexOf(clickedImage);
+                    if (index !== -1) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        lightboxOpen(index);
+                    }
+                }
             });
         }
-    });
-
-    // Обработчики для кнопок
-    prevButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showPrev();
-    });
-    
-    nextButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showNext();
-    });
-    
-    closeButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeLightbox();
-    });
-
-    // Закрытие по клику на фон
-    modalElement.addEventListener('click', function(e) {
-        if (e.target === modalElement) {
-            closeLightbox();
-        }
-    });
-
-    // Обработка клавиатуры
-    document.addEventListener('keydown', function(e) {
-        if (!modalElement.classList.contains('active')) return;
         
-        switch(e.key) {
-            case 'Escape':
-                closeLightbox();
-                break;
-            case 'ArrowLeft':
-                showPrev();
-                break;
-            case 'ArrowRight':
-                showNext();
-                break;
-        }
-    });
-
-    // Добавляем обработчик на весь контейнер портфолио
-    const portfolioContainer = document.querySelector('.portfolio-items');
-    if (portfolioContainer) {
-        portfolioContainer.addEventListener('click', function(e) {
-            const clickedImage = e.target.closest('.portfolio-image a');
-            if (clickedImage) {
-                const index = Array.from(images).indexOf(clickedImage);
-                if (index !== -1) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    openLightbox(index);
+        // Закрытие по клику на фон
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                lightboxClose();
+            }
+        });
+        
+        // Обработка клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (!modal.classList.contains('active')) return;
+            
+            switch(e.key) {
+                case 'Escape':
+                    lightboxClose();
+                    break;
+                case 'ArrowLeft':
+                    lightboxPrev();
+                    break;
+                case 'ArrowRight':
+                    lightboxNext();
+                    break;
+            }
+        });
+        
+        // Поддержка свайпов на мобильных
+        let startX = 0;
+        let startY = 0;
+        
+        modal.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+        
+        modal.addEventListener('touchend', function(e) {
+            if (!modal.classList.contains('active')) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const deltaX = startX - endX;
+            const deltaY = startY - endY;
+            
+            const minSwipeDistance = 50;
+            
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+                if (deltaX > 0) {
+                    lightboxNext();
+                } else {
+                    lightboxPrev();
                 }
             }
         });
     }
-});
-});
+})();
 </script>
 </body>
 

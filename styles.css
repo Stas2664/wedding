@@ -822,31 +822,43 @@ p {
 
 .page-title {
     color: #ffffff !important;
-    margin-bottom: 1rem;
-    font-size: 4rem;
-    font-weight: 800;
-    text-shadow: 0 6px 12px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.8);
-    letter-spacing: 0.15em;
-    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    margin-bottom: 1.5rem;
+    font-size: 3.2rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #ffffff, #f8f8f8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+    position: relative;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--color-accent-gold);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-header:hover .page-title::after {
+    width: 100px;
 }
 
 .page-subtitle {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #ffffff !important;
     max-width: 600px;
     margin: 0 auto;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.8);
-    font-weight: 600;
-    opacity: 1;
-    background: linear-gradient(45deg, #ffffff, #e0e0e0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    line-height: 1.7;
+    opacity: 0.95;
 }
 
 /* Values Section - Luxury Style */

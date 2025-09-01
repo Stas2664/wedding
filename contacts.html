@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Контакты - wedding rave</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&amp;family=Manrope:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<style id="final-visibility-overrides">
+  :root{
+    --text-dark:#1a1a1a;
+    --text-light:#F8F5F0;
+  }
+  /* Make sure animations never leave text invisible on iOS */
+  @supports (-webkit-touch-callout: none){
+    .fade-in-up,.fade-in-left,.fade-in-right,.scale-in{opacity:1!important;transform:none!important;}
+  }
+  /* Dark sections — light text */
+  .hero,.stats-section,.values-section,.cta-section,.footer{color:var(--text-light)!important;}
+  .hero *,.stats-section *,.values-section *,.cta-section *,.footer *{color:inherit!important;}
+  /* Light sections & cards — dark text */
+  .page-header,.team-section,.services-section,.contact-info,.contact-form-section,
+  .portfolio-stats,.faq-section,.service-card,.review-card,.review-item,.overall-rating,
+  .map-section,.additional-services,.additional-card,.all-reviews,.portfolio-filter,
+  .view-project,.contact-card,.story-content,.about-content,.team-content{color:var(--text-dark)!important;}
+  .page-header *,.team-section *,.services-section *,.contact-info *,.contact-form-section *,
+  .portfolio-stats *,.faq-section *,.service-card *,.review-card *,.review-item *,.overall-rating *,
+  .map-section *,.additional-services *,.additional-card *,.all-reviews *,.portfolio-filter *,
+  .view-project *,.contact-card *,.story-content *,.about-content *,.team-content *{color:inherit!important;}
+  /* Stats numbers inherit */
+  .stat-number,.stat-label{color:inherit!important;text-shadow:none!important;}
+  /* Navbar brand readable */
+  .nav-logo a{color:#fff!important;}
+  /* Footer social compact icons */
+  .footer-social .social-link{width:44px;height:44px;border-radius:50%;font-size:0;}
+  .footer-social .social-link i,.footer-social .social-link svg{font-size:22px;width:22px;height:22px;}
+  /* Contact social pills */
+  .social-icons{display:flex;gap:12px;flex-wrap:wrap;}
+  .social-icons .social-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:9999px;background:var(--color-accent-gold);color:#000!important;border-color:var(--color-accent-gold);width:auto;height:auto;}
+  .social-icons .social-link i,.social-icons .social-link svg{font-size:18px;width:18px;height:18px;}
+  .social-icons .social-link span{display:inline;}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+<div class="nav-container">
+<div class="nav-logo">
+<a href="index.html">wedding rave</a>
+</div>
+<div class="nav-menu" id="nav-menu">
+<a class="nav-link" href="index.html">Главная</a>
+<a class="nav-link" href="about.html">О нас</a>
+<a class="nav-link" href="services.html">Услуги</a>
+<a class="nav-link" href="portfolio.html">Портфолио</a>
+<a class="nav-link" href="reviews.html">Отзывы</a>
+<a class="nav-link active" href="contacts.html">Контакты</a>
+</div>
+<div class="nav-toggle" id="nav-toggle">
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
+</div>
+</div>
+</nav>
+<!-- Page Header -->
+<section class="page-header">
+<div class="container">
+<h1 class="page-title">КОНТАКТЫ</h1>
+<p class="page-subtitle">Свяжитесь с нами для обсуждения вашего проекта</p>
+</div>
+</section>
+<!-- Contact Info -->
+<section class="contact-info">
+<div class="container">
+<div class="contact-grid">
+<div class="contact-card">
+<div class="contact-icon">
+<i class="fas fa-phone"></i>
+</div>
+<h3>Телефон</h3>
+<p><a href="tel:89104656880">+7 (910) 465-68-80</a></p>
+<a class="btn btn-whatsapp" href="https://wa.me/89104656880" target="_blank">
+<i class="fab fa-whatsapp"></i> Написать в WhatsApp
+                    </a><a class="btn btn-contact" href="https://t.me/kashirskayaalla" target="_blank"><i class="fab fa-telegram-plane"></i> Написать в Telegram</a>
+</div>
+<div class="contact-card">
+<div class="contact-icon">
+<i class="fas fa-envelope"></i>
+</div>
+<h3>Email</h3>
+<p><a href="mailto:info@weddingrave.ru">info@weddingrave.ru</a></p>
+</div>
+
+<div class="contact-card">
+<div class="contact-icon">
+<i class="fas fa-clock"></i>
+</div>
+<h3>Часы работы</h3>
+<p>Пн-Пт: 9:00 - 19:00<br/>Сб-Вс: 10:00 - 18:00</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Form -->
+<section class="contact-form-section">
+<div class="container">
+<div class="contact-content">
+<div class="contact-text">
+<h2>ОСТАВЬТЕ ЗАЯВКУ</h2>
+<p>Расскажите о вашем проекте, и мы свяжемся с вами в течение 24 часов для бесплатной консультации.</p>
+<div class="contact-features">
+<div class="feature-item">
+<i class="fas fa-check"></i>
+<span>Бесплатная консультация</span>
+</div>
+<div class="feature-item">
+<i class="fas fa-check"></i>
+<span>Индивидуальный подход</span>
+</div>
+<div class="feature-item">
+<i class="fas fa-check"></i>
+<span>Быстрый ответ</span>
+</div>
+</div>
+<div class="social-links">
+<h3>Мы в социальных сетях</h3>
+<div class="social-icons">
+<a class="social-link instagram" href="https://www.instagram.com/wedding_rave?igsh=MWtxNGZhaGR1MG11aw%3D%3D&amp;utm_source=qr" target="_blank">
+<i class="fab fa-instagram"></i>
+<span>Instagram</span>
+</a>
+<a class="social-link whatsapp" href="https://wa.me/89104656880" target="_blank">
+<i class="fab fa-whatsapp"></i>
+<span>WhatsApp</span>
+</a>
+</div>
+</div>
+</div>
+<div class="contact-form">
+<form id="contact-form">
+<div class="form-row">
+<div class="form-group">
+<label for="name">Имя *</label>
+<input id="name" name="name" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="phone">Телефон *</label>
+<input id="phone" name="phone" required="" type="tel"/>
+</div>
+</div>
+<div class="form-group">
+<label for="email">Email</label>
+<input id="email" name="email" type="email"/>
+</div>
+<div class="form-group">
+<label for="event-type">Тип мероприятия</label>
+<select id="event-type" name="event-type">
+<option value="">Выберите тип</option>
+<option value="wedding-full">Свадьба под ключ</option>
+<option value="wedding-coordination">Координация свадьбы</option>
+<option value="corporate">Корпоративное мероприятие</option>
+<option value="birthday">День рождения</option>
+<option value="deviсhnik">Девичник</option>
+<option value="gender-reveal">Гендер-пати</option>
+<option value="other">Другое</option>
+</select>
+</div>
+<div class="form-group">
+<label for="event-date">Дата мероприятия</label>
+<input id="event-date" name="event-date" type="date"/>
+</div>
+<div class="form-group">
+<label for="guests">Количество гостей</label>
+<input id="guests" max="1000" min="1" name="guests" type="number"/>
+</div>
+<div class="form-group">
+<label for="budget">Бюджет (руб.)</label>
+<select id="budget" name="budget">
+<option value="">Выберите бюджет</option>
+<option value="under-100k">До 100,000</option>
+<option value="100k-200k">100,000 - 200,000</option>
+<option value="200k-500k">200,000 - 500,000</option>
+<option value="500k-1m">500,000 - 1,000,000</option>
+<option value="over-1m">Более 1,000,000</option>
+</select>
+</div>
+<div class="form-group">
+<label for="message">Сообщение *</label>
+<textarea id="message" name="message" placeholder="Расскажите о вашем проекте, пожеланиях и идеях..." required="" rows="5"></textarea>
+</div>
+<div class="form-group">
+<label class="checkbox-label">
+<input name="agreement" required="" type="checkbox"/>
+<span class="checkmark"></span>
+                                Я согласен на обработку персональных данных
+                            </label>
+</div>
+<button class="btn btn-primary btn-large" type="submit">
+                            ОТПРАВИТЬ ЗАЯВКУ
+                            <i class="fas fa-paper-plane"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="faq-section">
+<div class="container">
+<div class="section-header">
+<h2>ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</h2>
+</div>
+<div class="faq-list">
+<div class="faq-item">
+<div class="faq-question">
+<h3>Как долго планируется свадьба?</h3>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Время планирования зависит от сложности проекта. Минимальный срок - 2-3 месяца, оптимальный - 6-12 месяцев. Для особо сложных проектов может потребоваться до 18 месяцев.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<h3>Работаете ли вы в выходные?</h3>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Да, мы работаем по выходным, особенно в свадебный сезон. Координация мероприятий проводится в любое время, включая праздники.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<h3>Можете ли вы работать с ограниченным бюджетом?</h3>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Конечно! Мы создаем проекты для любого бюджета. Главное - правильно расставить приоритеты и найти креативные решения.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<h3>Предоставляете ли вы услуги в других городах?</h3>
+<i class="fas fa-chevron-down"></i>
+</div>
+<div class="faq-answer">
+<p>Да, мы работаем по всей России. Для мероприятий в других городах может потребоваться дополнительная плата за командировочные расходы.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Section -->
+
+<!-- CTA Section -->
+<section class="cta-section">
+<div class="container">
+<div class="cta-content">
+<h2>ГОТОВЫ ОБСУДИТЬ ВАШ ПРОЕКТ?</h2>
+<p>Свяжитесь с нами любым удобным способом</p>
+<div class="cta-buttons">
+<a class="btn btn-primary" href="tel:89104656880">
+<i class="fas fa-phone"></i>
+                    ПОЗВОНИТЬ
+                </a>
+<a class="btn btn-secondary" href="https://wa.me/89104656880">
+<i class="fab fa-whatsapp"></i>
+                    WHATSAPP
+                </a>
+</div>
+<a class="btn btn-secondary" href="https://t.me/kashirskayaalla" target="_blank"><i class="fab fa-telegram-plane"></i> TELEGRAM</a></div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo">
+<h3>wedding rave</h3>
+<p>Организация свадеб мечты</p>
+</div>
+<div class="footer-links">
+<a href="about.html">О нас</a>
+<a href="services.html">Услуги</a>
+<a href="portfolio.html">Портфолио</a>
+<a href="contacts.html">Контакты</a>
+</div>
+<div class="footer-social">
+<a class="social-link" href="https://www.instagram.com/wedding_rave?igsh=MWtxNGZhaGR1MG11aw%3D%3D&amp;utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+<a class="social-link" href="https://wa.me/89104656880" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a class="social-link" href="https://t.me/kashirskayaalla" target="_blank"><i class="fab fa-telegram-plane"></i></a></div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 wedding rave. Все права защищены.</p>
+</div>
+</div>
+</footer>
+<script src="script.js?v=15"></script>
+</body>
+</html>

@@ -2875,103 +2875,128 @@ body, p, li, input, select, textarea, button {
 .portfolio-image a{display:block;}
 
 
-/* === Custom Lightbox (no CDN) === */
-.lb-modal{
+/* === Lightbox Modal === */
+.lb-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0, 0, 0, 0.9);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-.lb-modal.open{ display: flex; }
-.lb-content{
+
+.lb-modal.open {
+  display: flex;
+  opacity: 1;
+}
+
+.lb-content {
   position: relative;
   max-width: 92vw;
   max-height: 92vh;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
 }
-.lb-image{
+
+.lb-modal.open .lb-content {
+  transform: scale(1);
+}
+
+.lb-counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 2;
+}
+
+.lb-image {
   max-width: 92vw;
   max-height: 92vh;
   width: auto;
   height: auto;
   display: block;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
-.lb-btn{
+
+.lb-image.loading {
+  opacity: 0.7;
+}
+
+.lb-btn, .lb-close {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s ease;
+}
+
+.lb-btn:hover, .lb-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.lb-prev {
   position: absolute;
   top: 50%;
+  left: 10px;
   transform: translateY(-50%);
-  font-size: 28px;
-  line-height: 1;
-  background: rgba(255,255,255,0.15);
-  border: none;
-  padding: 12px 14px;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 999px;
-  user-select: none;
 }
-.lb-prev{ left: -60px; }
-.lb-next{ right: -60px; }
-.lb-close{
+
+.lb-next {
   position: absolute;
-  top: -50px;
-  right: 0;
-  font-size: 28px;
-  background: rgba(255,255,255,0.15);
-  border: none;
-  padding: 10px 12px;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 999px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 }
-@media (max-width: 640px){
-  .lb-prev{ left: 10px; }
-  .lb-next{ right: 10px; }
-  .lb-close{ top: 10px; right: 10px; }
+
+.lb-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
-/* ensure portfolio overlay doesn't block clicks */
-.portfolio-overlay{ pointer-events: none; }
-.portfolio-image a{ display:block; }
 
-
-/* === Lightbox controls: visible & inside frame === */
-.lb-prev{ left: 10px !important; }
-.lb-next{ right: 10px !important; }
-.lb-close{ top: 10px !important; right: 10px !important; }
-
-.lb-btn, .lb-close{
-  background: rgba(0,0,0,0.6);
-  color:#fff;
-  font-size:32px;
-  width:48px;
-  height:48px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:none;
-  border-radius:999px;
-  cursor:pointer;
-  z-index:2;
+/* Portfolio overlay must not block clicks */
+.portfolio-overlay {
+  pointer-events: none;
 }
-.lb-btn:hover, .lb-close:hover{ background: rgba(0,0,0,0.8); }
-.lb-image{ position:relative; z-index:1; display:block; }
 
+.portfolio-image a {
+  display: block;
+}
 
+/* Portfolio instructions */
+.portfolio-instructions {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  border-left: 4px solid var(--color-accent-gold);
+}
 
-/* === Bulletproof Lightbox UI === */
-.lb-modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:9999}
-.lb-modal.open{display:flex}
-.lb-content{position:relative;max-width:92vw;max-height:92vh}
-.lb-image{max-width:92vw;max-height:92vh;display:block;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.4);position:relative;z-index:1}
-.lb-btn,.lb-close{background:rgba(0,0,0,.6);color:#fff;font-size:32px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;cursor:pointer;z-index:2}
-.lb-btn:hover,.lb-close:hover{background:rgba(0,0,0,.8)}
-.lb-prev{position:absolute;top:50%;left:10px;transform:translateY(-50%)}
-.lb-next{position:absolute;top:50%;right:10px;transform:translateY(-50%)}
-.lb-close{position:absolute;top:10px;right:10px}
-/* portfolio overlay must not block clicks */
-.portfolio-overlay{pointer-events:none}
-.portfolio-image a{display:block}
+.portfolio-instructions p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}

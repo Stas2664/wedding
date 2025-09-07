@@ -44,6 +44,23 @@
   .social-icons .social-link i,.social-icons .social-link svg{font-size:18px;width:18px;height:18px;}
   .social-icons .social-link span{display:inline;}
 </style>
+
+
+<style>
+/* Fix for image cropping in the Services page */
+.services-section .service-item .service-image{
+  height: auto !important;
+  overflow: visible !important;
+}
+.services-section .service-item .service-image img{
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  display: block;
+  filter: none !important; /* keep natural colors if any global grayscale applies */
+}
+</style>
 </head>
 <body>
 <!-- Navigation -->

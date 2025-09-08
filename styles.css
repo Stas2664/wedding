@@ -3239,7 +3239,7 @@ body, p, li, input, select, textarea, button {
 
 /* == Home Services: Turnkey card styling == */
 .services-preview .service-card{
-  background: #F4EDE4 !important; /* warm beige */
+  background: #E6D6C5 !important; /* warm beige */
 }
 .services-preview .service-card .service-content{
   border: 1.5px solid var(--color-accent-gold) !important;
@@ -3250,7 +3250,7 @@ body, p, li, input, select, textarea, button {
 
 /* == About page header: warm beige background + white text == */
 .about-page .page-header{
-  background: #F4EDE4 !important; /* warm beige */
+  background: #E6D6C5 !important; /* warm beige */
 }
 .about-page .page-header .page-title,
 .about-page .page-header .page-subtitle{
@@ -3261,7 +3261,7 @@ body, p, li, input, select, textarea, button {
 
 /* == About page header: force beige background, remove dark overlay == */
 .about-page .page-header{
-  background: #F4EDE4 !important;
+  background: #E6D6C5 !important;
 }
 .about-page .page-header::before,
 .about-page .page-header::after{
@@ -3416,4 +3416,147 @@ body, p, li, input, select, textarea, button {
 .team-section  .member-image img{
   filter: none !important;
   -webkit-filter: none !important;
+}
+
+
+/* == Services page header: beige background + black text (like About) == */
+.services-page .page-header{
+  background: #E6D6C5 !important; /* dark warm beige */
+}
+.services-page .page-header::before,
+.services-page .page-header::after{
+  content: none !important;
+  background: transparent !important;
+}
+.services-page .page-header .page-title,
+.services-page .page-header .page-subtitle{
+  color: #000 !important;
+  opacity: 1 !important;
+}
+
+
+/* == Services page: replace all white backgrounds with warm beige == */
+.services-page{ --color-white: #E6D6C5; }
+.services-page .section,
+.services-page .section-light,
+.services-page .container-light,
+.services-page .card,
+.services-page .service-card,
+.services-page .service-card .service-content,
+.services-page .feature-box,
+.services-page .box,
+.services-page .content-block,
+.services-page .info-card{
+  background: #E6D6C5 !important;
+}
+/* Keep buttons and inputs as-is; only background blocks are altered */
+
+
+/* == Services: Fix image fit for 'Свадьба под ключ' == */
+.services-page .turnkey-card .service-image{
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+.services-page .turnkey-card .service-image img{
+  display: block;
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+
+/* == Services: show 'Координация свадьбы' image without cropping == */
+.services-page .coordination-card .service-image{
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+.services-page .coordination-card .service-image img{
+  display: block;
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+
+/* == Services: show 'Организация мероприятий' image without cropping == */
+.services-page .events-card .service-image{
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+.services-page .events-card .service-image img{
+  display: block;
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+
+/* == Services: 'Как мы работаем' with photo background + dark overlay == */
+.services-page .how-we-work{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("images/services-how-bg.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+.services-page .how-we-work, 
+.services-page .how-we-work h1,
+.services-page .how-we-work h2,
+.services-page .how-we-work h3,
+.services-page .how-we-work h4,
+.services-page .how-we-work p,
+.services-page .how-we-work li,
+.services-page .how-we-work .step,
+.services-page .how-we-work .number{
+  color: #fff !important;
+}
+
+
+/* == Services: stretch 'Как мы работаем' so photo sits behind all text == */
+.services-page .how-we-work{
+  padding-top: 96px !important;
+  padding-bottom: 96px !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important; /* fill area; may crop edges for full-bleed effect */
+}
+@media (min-width: 992px){
+  .services-page .how-we-work{
+    padding-top: 128px !important;
+    padding-bottom: 128px !important;
+  }
+}
+
+
+/* == Services: grayscale background for 'Как мы работаем' without affecting text == */
+.services-page .how-we-work{
+  position: relative;
+  overflow: hidden;
+  background: transparent !important; /* photo handled by ::before */
+}
+.services-page .how-we-work::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("images/services-how-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: none;
+  z-index: 0;
+}
+.services-page .how-we-work > *{
+  position: relative;
+  z-index: 1;
 }

@@ -3176,81 +3176,244 @@ body, p, li, input, select, textarea, button {
 }
 
 
-/* Single photo styling with gold border */
-.about .about-image img{
-  border: 1.5px solid var(--color-accent-gold) !important;
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  border-radius: 0;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-  filter: grayscale(100%) contrast(1.1);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.about .about-image img:hover{
-  filter: grayscale(80%) contrast(1.05);
-  transform: scale(1.02);
-}
-
-/* (Kept for history) Gallery layout if ever used again */
-.about .about-image .about-gallery{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-.about .about-image .about-gallery img{
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  border: 1.5px solid var(--color-accent-gold);
-  border-radius: 0;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-  filter: grayscale(100%) contrast(1.1);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.about .about-image .about-gallery img:hover{
-  filter: grayscale(80%) contrast(1.05);
-  transform: scale(1.02);
-}
-
-@media (max-width: 992px){
-  .about .about-image img,
-  .about .about-image .about-gallery img{
-    height: 380px;
-  }
-}
 
 
-/* == About redesign: values-style transparent cards on bg image == */
-/* Background photo with dark overlay for readability */
-.about {
-  background: linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.55)), url("images/about-bg.jpg") center/cover no-repeat !important;
+/* == About redesign v3: white section bg + beige content box == */
+.about{
+  background: var(--color-white) !important;
 }
 
-/* Headings and base text in this section */
-.about .section-title,
-.about .about-text h2,
-.about .about-text p { color:#fff !important; opacity:1 !important; }
-
-/* Transparent (glass) cards like "Наши ценности" */
-.about .feature-item{
-  background: rgba(0,0,0,0.35) !important;
-  color: #fff !important;
-  border: 1px solid rgba(255,255,255,0.18) !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25) !important;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+/* content box */
+.about .about-content{
+  background: #F4EDE4; /* warm beige */
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
 }
+
+/* Title back to dark */
+.about .section-title{ color: var(--color-black) !important; }
+
+/* Keep the feature cards readable on beige */
+.about .feature-item{ background: rgba(0,0,0,0.35) !important; }
 .about .feature-item p{ color:#fff !important; }
 .about .feature-dash{ display:none !important; }
 
-/* Keep the right photo in color (no grayscale) */
-.about .about-image img{
-  filter: none !important;
-  -webkit-filter: none !important;
+/* Ensure the right image is in color */
+.about .about-image img{ filter:none !important; -webkit-filter:none !important; }
+
+/* Slightly reduce padding on mobile */
+@media (max-width: 768px){
+  .about .about-content{ padding: 1.25rem; border-radius: 12px; }
 }
 
-/* Responsive adjustments */
-@media (max-width: 992px){
-  .about .feature-item{ background: rgba(0,0,0,0.45) !important; }
+
+/* == Home: Services heading badge == */
+.services-preview .section-header .section-title{
+  display: inline-block;
+  background: #F4EDE4; /* warm beige */
+  color: #000 !important;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid var(--color-accent-gold);
+  border-radius: 10px;
+}
+.services-preview .section-header .section-title::after{
+  display: none !important; /* hide the underline for this one heading */
+}
+
+
+/* == Home: Services heading badge (revert to plain, white text with gold underline) == */
+.services-preview .section-header .section-title{
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  display: inline-block;
+}
+.services-preview .section-header .section-title::after{
+  display: block !important;               /* restore underline */
+  background: var(--color-accent-gold) !important;
+}
+
+
+/* == Home Services: Turnkey card styling == */
+.services-preview .service-card{
+  background: #F4EDE4 !important; /* warm beige */
+}
+.services-preview .service-card .service-content{
+  border: 1.5px solid var(--color-accent-gold) !important;
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+
+/* == About page header: warm beige background + white text == */
+.about-page .page-header{
+  background: #F4EDE4 !important; /* warm beige */
+}
+.about-page .page-header .page-title,
+.about-page .page-header .page-subtitle{
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+
+/* == About page header: force beige background, remove dark overlay == */
+.about-page .page-header{
+  background: #F4EDE4 !important;
+}
+.about-page .page-header::before,
+.about-page .page-header::after{
+  content: none !important;
+  background: transparent !important;
+}
+
+
+/* == About page header v2: dark beige background + black text == */
+.about-page .page-header{
+  background: #E6D6C5 !important; /* dark warm beige */
+}
+.about-page .page-header .page-title,
+.about-page .page-header .page-subtitle{
+  color: #000 !important;
+  opacity: 1 !important;
+}
+
+/* == About: Center "НАШИ ОСНОВНЫЕ УСЛУГИ" heading and clean cards == */
+.centered-title{
+  text-align: center !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* == About: Core services cards centered with image backgrounds == */
+.about-page .services-overview .services-list{
+  justify-items: center;
+  justify-content: center;
+}
+.about-page .services-overview .service-item{
+  width: 100%;
+  max-width: 360px;
+  min-height: 260px;
+  padding: 2rem !important;
+  border-radius: 12px;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  position: relative;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.20);
+}
+/* Gradient overlay baked into background with linear-gradient */
+.about-page .services-overview .service-bg-1{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url("images/about-service-1.jpg") !important;
+}
+.about-page .services-overview .service-bg-2{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url("images/about-service-2.jpg") !important;
+}
+.about-page .services-overview .service-bg-3{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url("images/about-service-3.jpg") !important;
+}
+.about-page .services-overview .service-item .service-info h5,
+.about-page .services-overview .service-item .service-info p{
+  color: #fff !important;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+}
+
+
+/* == About: tweak overlay transparency and center text in cards == */
+.about-page .services-overview .service-item .service-info{
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-page .services-overview .service-item .service-info h5,
+.about-page .services-overview .service-item .service-info p{
+  text-align: center !important;
+}
+
+
+/* == About: center content vertically in core services cards and lighten overlays == */
+.about-page .services-overview .service-item{
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.about-page .services-overview .service-item .service-info{
+  width: 100%;
+  max-width: 90%;
+}
+
+
+/* == About: strengthen overlay for card backgrounds for readability == */
+.about-page .services-overview .service-bg-1{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url("images/about-service-1.jpg") !important;
+}
+.about-page .services-overview .service-bg-2{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url("images/about-service-2.jpg") !important;
+}
+.about-page .services-overview .service-bg-3{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url("images/about-service-3.jpg") !important;
+}
+
+
+/* == About: overlay set to 0.45 for card backgrounds (final) == */
+.about-page .services-overview .service-bg-1{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("images/about-service-1.jpg") !important;
+}
+.about-page .services-overview .service-bg-2{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("images/about-service-2.jpg") !important;
+}
+.about-page .services-overview .service-bg-3{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("images/about-service-3.jpg") !important;
+}
+
+
+/* == About: overlay set to 0.55 for card backgrounds == */
+.about-page .services-overview .service-bg-1{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("images/about-service-1.jpg") !important;
+}
+.about-page .services-overview .service-bg-2{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("images/about-service-2.jpg") !important;
+}
+.about-page .services-overview .service-bg-3{
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("images/about-service-3.jpg") !important;
+}
+
+
+/* == About: Team section header boxed with warm beige == */
+.about-page section .boxed-intro{
+  display: inline-block;
+  background: #F4EDE4;
+  padding: 1.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+  margin-bottom: 2rem;
+}
+
+
+/* == About: center Team header and gold border on member text == */
+.about-page section .boxed-intro.centered-intro{
+  text-align: center !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-page .team-text-gold{
+  border: 1.5px solid var(--color-accent-gold);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  background: #ffffff00; /* transparent to keep current bg */
+}
+
+
+/* == About: remove grayscale in 'Наша команда' photo == */
+.team-section  .member-image img{
+  filter: none !important;
+  -webkit-filter: none !important;
 }
